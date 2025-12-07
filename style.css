@@ -1,0 +1,302 @@
+:root {
+  --bg1: #ffeef6;
+  --bg2: #fffdf8;
+  --accent: #caa558;
+  --text: #2b2b2b;
+  --muted: #6b6b6b;
+}
+
+/* GLOBAL RESET */
+*{box-sizing:border-box}
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  overflow-x: hidden;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 88vh;
+  min-height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.25);
+}
+.hero-inner {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 28px;
+}
+.hero-inner h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3.4rem;
+  color: var(--accent);
+}
+.hero-inner .lead { color: var(--muted); }
+.hero-inner .date { font-weight: 700; margin-top: 10px; }
+
+/* SIDE NAV */
+.side-nav {
+  position: fixed;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.75);
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  z-index: 1500;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.side-nav .nav-link {
+  font-size: 1.2rem;
+  padding: 7px;
+  text-decoration: none;
+  color: var(--text);
+}
+.side-nav .nav-link.active,
+.side-nav .nav-link:hover {
+  background: linear-gradient(90deg, var(--accent), #fcead6);
+  color: white;
+  border-radius: 8px;
+}
+
+/* SECTION ANIMATION */
+.section {
+  padding: 70px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .4s ease-out;
+}
+.section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* COUNTDOWN */
+.countdown {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* MAP BOX */
+.map-box {
+  background: #ffffffee;
+  padding: 22px;
+  border-radius: 14px;
+  border: 2px solid rgba(202,165,88,0.28);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.08);
+  margin-top: 16px;
+}
+.map-box h4 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: var(--accent);
+}
+.btn-map {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 22px;
+  color: #fff;
+  text-decoration: none;
+  background: var(--accent);
+  border-radius: 30px;
+}
+
+/* ===========================
+   GALLERY (Masonry 2 Kolom)
+   =========================== */
+#gallery { background: #fffefb; }
+
+.gallery-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.4rem;
+  color: var(--accent);
+}
+
+.gallery-desc {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* MASONRY 2 KOLUMN */
+.gallery-grid {
+  column-count: 2;        /* jumlah kolom */
+  column-gap: 12px;       /* jarak antar kolom */
+  padding: 6px;
+}
+.gallery-grid img {
+  width: 100%;
+  display: inline-block;
+  margin: 0 0 12px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.gallery-grid img:hover {
+  transform: scale(1.03);
+}
+
+/* HP → jadi 1 kolom */
+@media (max-width: 768px) {
+  .gallery-grid {
+    column-count: 1;
+  }
+}
+
+/* ===========================
+   INSTAGRAM SIDE-BY-SIDE
+   =========================== */
+.insta-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.insta-card {
+  width: 260px;
+  text-align: center;
+}
+.insta-frame {
+  width: 100%;
+  height: 260px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 6px solid rgba(202,165,88,0.25);
+  box-shadow: 0 8px 25px rgba(202,165,88,0.28);
+}
+.insta-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.insta-username {
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.insta-username a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.insta-username a:hover {
+  text-decoration: underline;
+}
+
+/* ===========================
+   AMPLOP DIGITAL
+   =========================== */
+#transfer h2 {
+  font-family: 'Great Vibes', cursive;
+  color: var(--accent);
+}
+#transfer .card {
+  border: 2px solid rgba(202,165,88,0.28);
+  border-radius: 12px;
+  transition: .25s;
+}
+#transfer .card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(202,165,88,0.3);
+}
+
+/* ===========================
+   MUSIC BUTTON
+   =========================== */
+.music-btn {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-size: 22px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+  z-index: 2000;
+}
+.music-btn.off {
+  background: #888;
+}
+
+/* ===========================
+   PETAL EFFECT
+   =========================== */
+#petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 30% 30%, #ffeaf0 0%, #ffcddf 60%);
+  border-radius: 50% 30% 50% 30%;
+  opacity: 0.95;
+}
+
+/* ===========================
+   INTRO SCREEN
+   =========================== */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg,#fff6fb,#fffdf8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.intro-content { text-align: center; }
+.intro-title { opacity:0; animation: slideDown .7s ease .2s forwards; }
+.intro-names { opacity:0; animation: zoomIn 1s ease .5s forwards; }
+.intro-date { opacity:0; animation: fadeUp .7s ease 1s forwards; }
+.btn-open {
+  opacity: 0;
+  animation: fadeIn .8s ease 1.4s forwards;
+  margin-top: 20px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ANIMATION KEYFRAMES */
+@keyframes fadeIn {from{opacity:0}to{opacity:1}}
+@keyframes fadeUp {from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes slideDown {from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
+@keyframes zoomIn {from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
