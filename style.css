@@ -6,8 +6,9 @@
   --muted: #6b6b6b;
 }
 
-/* GLOBAL RESET */
-*{box-sizing:border-box}
+/* RESET */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -15,13 +16,67 @@ body {
   color: var(--text);
   overflow-x: hidden;
 }
+
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 18px;
 }
 
-/* HERO */
+/* =======================================================
+   INTRO SCREEN – background kertas
+   ======================================================= */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  background: url("assets/bg-paper.jpg") center/cover no-repeat;
+  background-color: #f5e7cc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.overlay-intro {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.12);
+  pointer-events: none;
+  z-index: 7;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 18px;
+}
+
+.intro-sub { color: #4b4b4b; font-weight: 500; margin: 0; }
+.intro-title { color: #2b2b2b; margin: 0; }
+.intro-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  color: #b07f2a;
+  margin: 10px 0;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.28);
+}
+.intro-date { color: #4b4b4b; margin-bottom: 12px; }
+
+.btn-open {
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  font-weight: 700;
+  background: #b07f2a;
+  color: white;
+  box-shadow: 0 8px 20px rgba(176,127,42,0.18);
+}
+
+/* =======================================================
+   HERO
+   ======================================================= */
 .hero {
   position: relative;
   height: 88vh;
@@ -31,6 +86,7 @@ body {
   justify-content: center;
   overflow: hidden;
 }
+
 .cover {
   position: absolute;
   inset: 0;
@@ -39,99 +95,99 @@ body {
   object-fit: cover;
   filter: brightness(0.85);
 }
+
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.25);
 }
+
 .hero-inner {
   position: relative;
   z-index: 5;
   text-align: center;
   padding: 28px;
 }
+
 .hero-inner h1 {
   font-family: 'Great Vibes', cursive;
   font-size: 3.4rem;
   color: var(--accent);
-}
-.hero-inner .lead { color: var(--muted); }
-.hero-inner .date { font-weight: 700; margin-top: 10px; }
-
-/* SIDE NAV */
-.side-nav {
-  position: fixed;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255,255,255,0.75);
-  padding: 8px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  z-index: 1500;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.side-nav .nav-link {
-  font-size: 1.2rem;
-  padding: 7px;
-  text-decoration: none;
-  color: var(--text);
-}
-.side-nav .nav-link.active,
-.side-nav .nav-link:hover {
-  background: linear-gradient(90deg, var(--accent), #fcead6);
-  color: white;
-  border-radius: 8px;
+  margin: 0;
+  text-shadow: 0 3px 8px rgba(0,0,0,0.45);
 }
 
-/* SECTION ANIMATION */
+.hero-inner .lead {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
+  margin-top: 10px;
+}
+
+.hero-inner .date {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
+  margin-top: 12px;
+}
+
+/* =======================================================
+   SECTION ANIMATION
+   ======================================================= */
 .section {
   padding: 70px 0;
   opacity: 0;
   transform: translateY(20px);
   transition: all .4s ease-out;
 }
+
 .section.visible {
   opacity: 1;
   transform: none;
 }
 
-/* COUNTDOWN */
+/* =======================================================
+   INFO
+   ======================================================= */
 .countdown {
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--accent);
 }
 
-/* MAP BOX */
+.info-card {
+  border-radius: 14px;
+  background: #fff;
+  border: 2px solid rgba(202,165,88,0.28);
+}
+
 .map-box {
   background: #ffffffee;
   padding: 22px;
   border-radius: 14px;
   border: 2px solid rgba(202,165,88,0.28);
   box-shadow: 0 6px 22px rgba(0,0,0,0.08);
-  margin-top: 16px;
 }
+
 .map-box h4 {
   font-family: 'Great Vibes', cursive;
   font-size: 2rem;
   color: var(--accent);
 }
+
 .btn-map {
-  display: inline-block;
-  margin-top: 10px;
   padding: 10px 22px;
-  color: #fff;
-  text-decoration: none;
   background: var(--accent);
+  color: white;
   border-radius: 30px;
+  text-decoration: none;
 }
 
-/* ===========================
-   GALLERY (Masonry 2 Kolom)
-   =========================== */
+/* =======================================================
+   GALERI – 8 FOTO, 2 KOLOM + ANIMASI
+   ======================================================= */
 #gallery { background: #fffefb; }
 
 .gallery-title {
@@ -140,51 +196,60 @@ body {
   color: var(--accent);
 }
 
-.gallery-desc {
-  color: var(--muted);
-  font-size: 1rem;
+.gallery-desc { color: var(--muted); }
+
+.gallery-grid-fixed {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 10px;
 }
 
-/* MASONRY 2 KOLUMN */
-.gallery-grid {
-  column-count: 2;        /* jumlah kolom */
-  column-gap: 12px;       /* jarak antar kolom */
-  padding: 6px;
+/* anim item (awal) */
+.gallery-grid-fixed .anim-item {
+  opacity: 0;
+  transform: translateY(18px) scale(.98);
+  transition: opacity .45s ease, transform .45s ease;
 }
-.gallery-grid img {
+
+/* anim item (muncul) */
+.gallery-grid-fixed .anim-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.gallery-grid-fixed img {
   width: 100%;
-  display: inline-block;
-  margin: 0 0 12px;
-  border-radius: 12px;
+  aspect-ratio: 3/4;
   object-fit: cover;
+  border-radius: 14px;
+  display: block;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
   transition: transform .25s ease, box-shadow .25s ease;
 }
-.gallery-grid img:hover {
+
+.gallery-grid-fixed img:hover {
   transform: scale(1.03);
+  box-shadow: 0 10px 30px rgba(202,165,88,0.28);
 }
 
-/* HP → jadi 1 kolom */
-@media (max-width: 768px) {
-  .gallery-grid {
-    column-count: 1;
-  }
+/* Mobile */
+@media (max-width:480px){
+  .gallery-grid-fixed { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ===========================
-   INSTAGRAM SIDE-BY-SIDE
-   =========================== */
+/* =======================================================
+   INSTAGRAM
+   ======================================================= */
 .insta-row {
   display: flex;
   justify-content: center;
   gap: 28px;
   flex-wrap: wrap;
-  margin-top: 28px;
 }
-.insta-card {
-  width: 260px;
-  text-align: center;
-}
+
+.insta-card { width: 260px; text-align: center; }
+
 .insta-frame {
   width: 100%;
   height: 260px;
@@ -193,71 +258,104 @@ body {
   border: 6px solid rgba(202,165,88,0.25);
   box-shadow: 0 8px 25px rgba(202,165,88,0.28);
 }
+
 .insta-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .insta-username {
   margin-top: 10px;
   font-weight: 700;
   color: var(--accent);
 }
-.insta-username a {
-  color: var(--accent);
-  text-decoration: none;
-}
-.insta-username a:hover {
-  text-decoration: underline;
-}
 
-/* ===========================
+/* =======================================================
    AMPLOP DIGITAL
-   =========================== */
+   ======================================================= */
 #transfer h2 {
   font-family: 'Great Vibes', cursive;
   color: var(--accent);
 }
+
 #transfer .card {
   border: 2px solid rgba(202,165,88,0.28);
   border-radius: 12px;
   transition: .25s;
 }
+
 #transfer .card:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(202,165,88,0.3);
 }
 
-/* ===========================
-   MUSIC BUTTON
-   =========================== */
+/* =======================================================
+   NAVBAR BAWAH
+   ======================================================= */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 65px;
+  width: 100%;
+  background: #ffffffee;
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+  z-index: 2000;
+}
+
+.bottom-nav .nav-item {
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  color: var(--text);
+  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: .25s ease;
+}
+
+.bottom-nav .nav-item span {
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+.bottom-nav .nav-item.active,
+.bottom-nav .nav-item:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* =======================================================
+   TOMBOL MUSIK
+   ======================================================= */
 .music-btn {
   position: fixed;
   left: 18px;
-  bottom: 18px;
+  bottom: 90px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
   background: var(--accent);
   color: #fff;
-  border: none;
   font-size: 22px;
+  border: none;
   box-shadow: 0 8px 22px rgba(0,0,0,0.2);
   z-index: 2000;
 }
-.music-btn.off {
-  background: #888;
-}
 
-/* ===========================
-   PETAL EFFECT
-   =========================== */
-#petals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5;
-}
+.music-btn.off { background: #888; }
+
+/* =======================================================
+   PETALS
+   ======================================================= */
+#petals { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+
 .petal {
   position: absolute;
   width: 12px;
@@ -267,36 +365,16 @@ body {
   opacity: 0.95;
 }
 
-/* ===========================
-   INTRO SCREEN
-   =========================== */
-.intro-screen {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(180deg,#fff6fb,#fffdf8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-.intro-content { text-align: center; }
-.intro-title { opacity:0; animation: slideDown .7s ease .2s forwards; }
-.intro-names { opacity:0; animation: zoomIn 1s ease .5s forwards; }
-.intro-date { opacity:0; animation: fadeUp .7s ease 1s forwards; }
-.btn-open {
-  opacity: 0;
-  animation: fadeIn .8s ease 1.4s forwards;
-  margin-top: 20px;
-  padding: 12px 28px;
-  border-radius: 30px;
-  font-weight: 700;
-  border: none;
-  background: var(--accent);
-  color: #fff;
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width:768px){
+  .hero-inner h1 { font-size: 2rem; }
+  .intro-names { font-size: 2.2rem; }
 }
 
-/* ANIMATION KEYFRAMES */
-@keyframes fadeIn {from{opacity:0}to{opacity:1}}
-@keyframes fadeUp {from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-@keyframes slideDown {from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
-@keyframes zoomIn {from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@media (max-width:480px){
+  .hero-inner h1 { font-size: 1.6rem; }
+  .intro-names { font-size: 1.8rem; }
+  .insta-card { width: 100%; }
+}
