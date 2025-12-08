@@ -1,8 +1,12 @@
-// 🌸 Efek Kelopak Jatuh — versi lebih cepat & ringan
+/* ======================================================
+   🌸 EFEK KELOPAK BUNGA
+   ====================================================== */
 (function createPetals() {
   const container = document.getElementById('petals');
+  if (!container) return;
+
   const count = 18;
-  const h = window.innerHeight;
+  const screenHeight = window.innerHeight;
 
   for (let i = 0; i < count; i++) {
     const el = document.createElement('div');
@@ -16,29 +20,33 @@
 
     container.appendChild(el);
 
-    // durasi lebih singkat agar efek tidak lambat
-    const dur = 4 + Math.random() * 4;
+    const duration = 4 + Math.random() * 4;
     const delay = Math.random() * 2;
 
     el.animate(
       [
-        { transform: 'translateY(0) rotate(0deg)' },
-        { transform: `translateY(${h + 200}px) rotate(${360 + Math.random() * 720}deg)` }
+        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+        {
+          transform: `translateY(${screenHeight + 200}px) rotate(${360 + Math.random() * 720}deg)`,
+          opacity: 0.9
+        }
       ],
       {
-        duration: dur * 1000,
-        iterations: Infinity,
+        duration: duration * 1000,
         delay: delay * 1000,
+        iterations: Infinity,
         easing: 'linear'
       }
     );
   }
 })();
 
-
-// ✨ Animasi scroll setiap section (lebih cepat)
+/* ======================================================
+   ✨ ANIMASI SCROLL SECTION
+   ====================================================== */
 (function () {
   const sections = document.querySelectorAll('.section');
+  if (!sections) return;
 
   const observer = new IntersectionObserver(
     entries => {
@@ -46,92 +54,123 @@
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     },
-    { threshold: 0.15 } // lebih responsif
+    { threshold: 0.15 }
   );
 
-  sections.forEach(s => observer.observe(s));
+  sections.forEach(section => observer.observe(section));
 })();
 
-
-// 💍 Intro Screen + Musik Fade-in lebih cepat
+/* ======================================================
+   💍 INTRO SCREEN + MUSIK FADE-IN
+   ====================================================== */
 (function () {
   const intro = document.getElementById('intro-screen');
-  const openInvite = document.getElementById('open-invite');
-  const musicEl = document.getElementById('bg-music');
+  const openBtn = document.getElementById('open-invite');
+  const music = document.getElementById('bg-music');
 
-  musicEl.volume = 0.2;
+  if (!intro || !openBtn || !music) return;
 
-  // Mencoba memutar musik (kalau diblokir browser tidak error)
-  musicEl.play().catch(() => {});
+  music.volume = 0.2;
+  music.play().catch(() => {});
 
-  openInvite.addEventListener('click', () => {
+  openBtn.addEventListener('click', () => {
     intro.classList.add('hide');
 
     let vol = 0.2;
-    const fade = setInterval(() => {
+    const fadeIn = setInterval(() => {
       if (vol < 1.0) {
-        vol = Math.min(1.0, vol + 0.05);
-        musicEl.volume = vol;
+        vol = Math.min(1.0, vol + 0.06);
+        music.volume = vol;
       } else {
-        clearInterval(fade);
+        clearInterval(fadeIn);
       }
-    }, 200);
+    }, 180);
 
     setTimeout(() => {
       intro.style.display = 'none';
-      try {
-        musicEl.play();
-      } catch (e) {}
-    }, 800); // jauh lebih cepat dari versi sebelumnya
+      try { music.play(); } catch (e) {}
+      document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
+    }, 900);
   });
 })();
 
+/* ======================================================
+   🎵 TOMBOL MUSIK (PLAY/PAUSE)
+   ====================================================== */
+const musicBtn = document.getElementById('music-btn');
+const musicBg = document.getElementById('bg-music');
+let isPlaying = true;
 
-// 🎵 Tombol Musik Play / Pause
-const music = document.getElementById('bg-music');
-const btn = document.getElementById('music-btn');
-let playing = true;
+if (musicBtn && musicBg) {
+  musicBtn.addEventListener('click', () => {
+    if (isPlaying) musicBg.pause();
+    else musicBg.play();
 
-if (btn) {
-  btn.addEventListener('click', () => {
-    if (playing) music.pause();
-    else music.play();
-    playing = !playing;
-    btn.classList.toggle('off', !playing);
+    isPlaying = !isPlaying;
+    musicBtn.classList.toggle('off', !isPlaying);
   });
 }
 
-
-// ⏳ Countdown Menuju Hari Bahagia
+/* ======================================================
+   🕒 COUNTDOWN PERNIKAHAN
+   ====================================================== */
 (function () {
-  const target = new Date('March 31, 2026 09:00:00').getTime();
-  const el = document.getElementById('countdown');
+  const countdownEl = document.getElementById('countdown');
+  if (!countdownEl) return;
 
-  function update() {
+  const targetDate = new Date("March 31, 2026 09:00:00").getTime();
+
+  function updateCountdown() {
     const now = Date.now();
-    const d = target - now;
+    const diff = targetDate - now;
 
-    if (d <= 0) {
-      el.innerText = '💍 Hari ini adalah hari bahagia kami 💍';
-      clearInterval(interval);
+    if (diff <= 0) {
+      countdownEl.innerText = "💍 Hari ini adalah hari bahagia kami 💍";
+      clearInterval(timer);
       return;
     }
 
-    const days = Math.floor(d / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((d % (1000 * 60)) / 1000);
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-    el.innerText = `💞 ${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik 💞`;
+    countdownEl.innerText =
+      `💞 ${days} Hari ${hours} Jam ${mins} Menit ${secs} Detik 💞`;
   }
 
-  update();
-  const interval = setInterval(update, 1000);
+  updateCountdown();
+  const timer = setInterval(updateCountdown, 1000);
 })();
 
-
-// 💳 Salin Nomor Rekening
+/* ======================================================
+   💳 COPY REKENING
+   ====================================================== */
 function copyText(text) {
-  navigator.clipboard.writeText(text);
-  alert('Nomor rekening disalin: ' + text);
+  navigator.clipboard.writeText(text)
+    .then(() => alert("Nomor rekening disalin: " + text))
+    .catch(() => alert("Gagal menyalin! Salin manual: " + text));
 }
+
+/* ======================================================
+   📸 ANIMASI GALERI (STAGGERED FADE-UP)
+   ====================================================== */
+(function galleryStaggerReveal() {
+  const items = document.querySelectorAll('.gallery-grid-fixed .anim-item');
+  if (!items.length) return;
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+      let index = Array.from(items).indexOf(el);
+      const delay = Math.min(12, index) * 80;
+
+      setTimeout(() => el.classList.add('visible'), delay);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.18 });
+
+  items.forEach(item => io.observe(item));
+})();
