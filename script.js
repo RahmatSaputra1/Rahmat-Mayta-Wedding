@@ -70,6 +70,7 @@
 
   if (!intro || !openBtn || !music) return;
 
+  // set low initial volume; try to play (will be blocked on some browsers until interaction)
   music.volume = 0.2;
   music.play().catch(() => {});
 
