@@ -1,206 +1,434 @@
-/* ======================================================
-   🌸 EFEK KELOPAK BUNGA
-   ====================================================== */
-(function createPetals() {
-  const container = document.getElementById('petals');
-  if (!container) return;
-
-  const count = 18;
-  const screenHeight = window.innerHeight;
-
-  for (let i = 0; i < count; i++) {
-    const el = document.createElement('div');
-    el.className = 'petal';
-    el.style.left = Math.random() * 100 + '%';
-    el.style.top = -Math.random() * 20 - 5 + '%';
-
-    const size = 8 + Math.random() * 10;
-    el.style.width = size + 'px';
-    el.style.height = size + 'px';
-
-    container.appendChild(el);
-
-    const duration = 4 + Math.random() * 4;
-    const delay = Math.random() * 2;
-
-    el.animate(
-      [
-        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-        {
-          transform: `translateY(${screenHeight + 200}px) rotate(${360 + Math.random() * 720}deg)`,
-          opacity: 0.9
-        }
-      ],
-      {
-        duration: duration * 1000,
-        delay: delay * 1000,
-        iterations: Infinity,
-        easing: 'linear'
-      }
-    );
-  }
-})();
-
-/* ======================================================
-   ✨ SECTION FADE-IN
-   ====================================================== */
-(function () {
-  const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    }),
-    { threshold: 0.15 }
-  );
-  sections.forEach(s => observer.observe(s));
-})();
-
-/* ======================================================
-   💍 INTRO + FADE-IN MUSIC
-   ====================================================== */
-(function () {
-  const intro = document.getElementById('intro-screen');
-  const openBtn = document.getElementById('open-invite');
-  const music = document.getElementById('bg-music');
-
-  if (!intro || !openBtn || !music) return;
-
-  music.volume = 0.25;
-  music.play().catch(() => {});
-
-  openBtn.addEventListener('click', () => {
-    intro.classList.add('hide');
-
-    let vol = 0.25;
-    const fade = setInterval(() => {
-      if (vol < 1) {
-        vol += 0.07;
-        music.volume = vol;
-      } else clearInterval(fade);
-    }, 160);
-
-    setTimeout(() => {
-      intro.style.display = "none";
-      try { music.play(); } catch (e) {}
-    }, 900);
-  });
-})();
-
-/* ======================================================
-   🎵 TOMBOL MUSIK
-   ====================================================== */
-const musicBtn = document.getElementById("music-btn");
-const musicBg = document.getElementById("bg-music");
-let isPlaying = true;
-
-if (musicBtn && musicBg) {
-  musicBtn.addEventListener("click", () => {
-    if (isPlaying) musicBg.pause(); else musicBg.play();
-    isPlaying = !isPlaying;
-    musicBtn.classList.toggle("off", !isPlaying);
-  });
+:root {
+  --bg1: #ffeef6;
+  --bg2: #fffdf8;
+  --accent: #caa558;
+  --text: #2b2b2b;
+  --muted: #6b6b6b;
 }
 
-/* ======================================================
-   ⏳ COUNTDOWN
-   ====================================================== */
-(function () {
-  const el = document.getElementById("countdown");
-  if (!el) return;
-
-  const target = new Date("March 31, 2026 09:00:00").getTime();
-
-  function update() {
-    const now = Date.now();
-    const diff = target - now;
-    if (diff <= 0) {
-      el.innerText = "💍 Hari ini adalah hari bahagia kami 💍";
-      return;
-    }
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diff % (1000 * 60)) / 1000);
-    el.innerText = `💞 ${d} Hari ${h} Jam ${m} Menit ${s} Detik 💞`;
-  }
-
-  setInterval(update, 1000);
-  update();
-})();
-
-/* ======================================================
-   💳 COPY TEXT
-   ====================================================== */
-function copyText(txt) {
-  navigator.clipboard.writeText(txt)
-    .then(() => alert("Disalin: " + txt))
-    .catch(() => alert("Gagal menyalin"));
+/* RESET */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; padding: 0; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  overflow-x: hidden;
 }
 
-/* ======================================================
-   📸 GALLERY ANIMATION
-   ====================================================== */
-(function () {
-  const items = document.querySelectorAll('.gallery-grid-fixed .anim-item');
-  if (!items.length) return;
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const index = [...items].indexOf(e.target);
-      setTimeout(() => e.target.classList.add('visible'), index * 90);
-      obs.unobserve(e.target);
-    });
-  }, { threshold: 0.18 });
+/* =======================================================
+   INTRO SCREEN
+   ======================================================= */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  background: #d7c8a4; /* background intro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
 
-  items.forEach(i => obs.observe(i));
-})();
+.overlay-intro {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.12);
+  z-index: 2;
+}
 
-/* ======================================================
-   💞 INSTAGRAM ANIMATION + TILT
-   ====================================================== */
-(function () {
-  const cards = document.querySelectorAll('.insta-card');
-  if (!cards.length) return;
+.intro-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      const index = [...cards].indexOf(e.target);
-      setTimeout(() => e.target.classList.add('visible'), index * 120);
-      obs.unobserve(e.target);
-    });
-  }, { threshold: 0.18 });
+.intro-sub {
+  color: #2b2b2b !important;
+  font-weight: 500;
+}
 
-  cards.forEach(c => obs.observe(c));
+.intro-title {
+  color: #000 !important;
+  font-weight: 600;
+}
 
-  if (!window.matchMedia("(hover: hover)").matches) return;
+.intro-names {
+  font-family: 'Great Vibes', cursive;
+  color: #ffeb99 !important;  /* GOLD SUPER TERANG */
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.25),
+    0 0 14px rgba(255,235,153,0.75),
+    0 0 25px rgba(255,235,153,0.55);
+}
 
-  cards.forEach(card => {
-    const frame = card.querySelector('.insta-frame');
+.intro-date {
+  color: #2b2b2b !important;
+  font-weight: 600;
+}
 
-    card.addEventListener("mousemove", e => {
-      const r = card.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+.btn-open {
+  padding: 12px 28px;
+  border-radius: 30px;
+  background: #caa558;
+  border: none;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+}
 
-      frame.style.transform =
-        `translateZ(10px) rotateX(${dy * -7}deg) rotateY(${dx * 7}deg) scale(1.03)`;
-    });
+/* =======================================================
+   HERO
+   ======================================================= */
+.hero {
+  position: relative;
+  height: 85vh;
+  min-height: 530px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    card.addEventListener("mouseleave", () => {
-      frame.style.transform = "";
-    });
-  });
-})();
+.cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.80);
+}
 
-/* ======================================================
-   📍 ANIMASI KLIK TOMBOL GOOGLE MAPS
-   ====================================================== */
-document.querySelectorAll('.map-small-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.classList.remove('clicked');
-    void btn.offsetWidth;
-    btn.classList.add('clicked');
-  });
-});
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero-inner h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 4.2rem;
+  color: var(--accent);
+  text-shadow: 0 3px 8px rgba(0,0,0,0.55);
+  margin: 0;
+}
+
+.hero-inner .lead {
+  font-size: 1.15rem;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
+}
+
+.hero-inner .date {
+  margin-top: 10px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* =======================================================
+   ORANG TUA
+   ======================================================= */
+#parents {
+  background: #fffdf8;
+  padding-top: 60px;
+}
+
+.parents-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin-bottom: 25px;
+}
+
+.parents-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.parent-box {
+  width: 320px;
+  background: #ffffffef;
+  border-radius: 14px;
+  border: 2px solid rgba(202,165,88,0.25);
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.parent-name {
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.parent-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* =======================================================
+   SECTION ANIMATION
+   ======================================================= */
+.section {
+  padding: 70px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: .4s ease-out;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* =======================================================
+   GALERI
+   ======================================================= */
+#gallery {
+  background: #fffefb;
+}
+
+.gallery-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.4rem;
+  color: var(--accent);
+}
+
+.gallery-desc {
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.gallery-grid-fixed {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  padding: 10px;
+}
+
+.gallery-grid-fixed .anim-item {
+  opacity: 0;
+  transform: translateY(16px) scale(.97);
+  transition: .45s ease;
+}
+
+.gallery-grid-fixed .anim-item.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.gallery-grid-fixed img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  transition: .25s ease;
+}
+
+.gallery-grid-fixed img:hover {
+  transform: scale(1.03);
+}
+
+/* =======================================================
+   INSTAGRAM
+   ======================================================= */
+.insta-row {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.insta-card {
+  width: 260px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(16px) scale(.985);
+  transition: .5s ease;
+  perspective: 800px;
+}
+
+.insta-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.insta-frame {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 6px solid rgba(202,165,88,0.25);
+  transition: .35s ease;
+}
+
+.insta-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (hover:hover) and (pointer:fine) {
+  .insta-card:hover .insta-frame {
+    transform: translateY(-6px) rotateX(4deg) rotateY(2deg) scale(1.02);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+  }
+}
+
+.insta-username a {
+  color: var(--accent);
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+}
+
+.insta-username a::after {
+  content: "";
+  position: absolute;
+  left: -60%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg,
+              rgba(255,255,255,0),
+              rgba(255,255,255,0.4),
+              rgba(255,255,255,0));
+  transform: skewX(-20deg);
+  transition: .8s;
+}
+
+.insta-card:hover .insta-username a::after {
+  left: 120%;
+}
+
+/* =======================================================
+   MAP BUTTON
+   ======================================================= */
+.map-box {
+  background: #ffffffdd;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(202,165,88,0.15);
+  margin: 20px auto;
+  max-width: 900px;
+}
+
+.btn-map {
+  background: var(--accent);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+/* =======================================================
+   BOTTOM NAVBAR
+   ======================================================= */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 65px;
+  background: #ffffffee;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 2000;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+}
+
+.bottom-nav .nav-item {
+  text-decoration: none;
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  color: var(--text);
+  transition: .25s ease;
+}
+
+.bottom-nav .nav-item span {
+  display: block;
+  font-size: 11px;
+}
+
+.bottom-nav .nav-item.active,
+.bottom-nav .nav-item:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* =======================================================
+   MUSIC BUTTON
+   ======================================================= */
+.music-btn {
+  position: fixed;
+  left: 18px;
+  bottom: 90px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 22px;
+  z-index: 2000;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+}
+
+.music-btn.off {
+  background: #777;
+}
+
+/* =======================================================
+   PETALS
+   ======================================================= */
+#petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.petal {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 30% 30%, #ffeaf0, #ffcddf);
+  border-radius: 50% 30% 50% 30%;
+  opacity: .9;
+}
+
+/* =======================================================
+   RESPONSIVE
+   ======================================================= */
+@media (max-width: 768px) {
+  .hero-inner h1 { font-size: 3rem; }
+  .intro-names { font-size: 2.4rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-inner h1 { font-size: 2.5rem; }
+  .insta-card { width: 100%; }
+}
