@@ -1,5 +1,5 @@
 /* ======================================================
-   🌸 EFEK KELOPAK BUNGA
+   🌸 KELopak Animasi
    ====================================================== */
 (function createPetals() {
   const container = document.getElementById('petals');
@@ -42,21 +42,21 @@
 })();
 
 /* ======================================================
-   ✨ SECTION FADE-IN
+   SECTION FADE-IN
    ====================================================== */
 (function () {
-  const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver(
+  const sec = document.querySelectorAll('.section');
+  const obs = new IntersectionObserver(
     entries => entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add('visible');
     }),
     { threshold: 0.15 }
   );
-  sections.forEach(s => observer.observe(s));
+  sec.forEach(s => obs.observe(s));
 })();
 
 /* ======================================================
-   💍 INTRO + FADE-IN MUSIC
+   INTRO & MUSIK FADE-IN
    ====================================================== */
 (function () {
   const intro = document.getElementById('intro-screen');
@@ -66,7 +66,6 @@
   if (!intro || !openBtn || !music) return;
 
   music.volume = 0.25;
-  music.play().catch(() => {});
 
   openBtn.addEventListener('click', () => {
     intro.classList.add('hide');
@@ -81,28 +80,26 @@
 
     setTimeout(() => {
       intro.style.display = "none";
-      try { music.play(); } catch (e) {}
+      music.play().catch(()=>{});
     }, 900);
   });
 })();
 
 /* ======================================================
-   🎵 TOMBOL MUSIK
+   MUSIC BUTTON
    ====================================================== */
 const musicBtn = document.getElementById("music-btn");
-const musicBg = document.getElementById("bg-music");
-let isPlaying = true;
+const musicFile = document.getElementById("bg-music");
+let playing = true;
 
-if (musicBtn && musicBg) {
-  musicBtn.addEventListener("click", () => {
-    if (isPlaying) musicBg.pause(); else musicBg.play();
-    isPlaying = !isPlaying;
-    musicBtn.classList.toggle("off", !isPlaying);
-  });
-}
+musicBtn.addEventListener("click", () => {
+  playing ? musicFile.pause() : musicFile.play();
+  playing = !playing;
+  musicBtn.classList.toggle("off", !playing);
+});
 
 /* ======================================================
-   ⏳ COUNTDOWN
+   COUNTDOWN
    ====================================================== */
 (function () {
   const el = document.getElementById("countdown");
@@ -110,35 +107,29 @@ if (musicBtn && musicBg) {
 
   const target = new Date("March 31, 2026 09:00:00").getTime();
 
-  function update() {
+  function tick() {
     const now = Date.now();
     const diff = target - now;
+
     if (diff <= 0) {
       el.innerText = "💍 Hari ini adalah hari bahagia kami 💍";
       return;
     }
+
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
+
     el.innerText = `💞 ${d} Hari ${h} Jam ${m} Menit ${s} Detik 💞`;
   }
 
-  setInterval(update, 1000);
-  update();
+  tick();
+  setInterval(tick, 1000);
 })();
 
 /* ======================================================
-   💳 COPY TEXT
-   ====================================================== */
-function copyText(txt) {
-  navigator.clipboard.writeText(txt)
-    .then(() => alert("Disalin: " + txt))
-    .catch(() => alert("Gagal menyalin"));
-}
-
-/* ======================================================
-   📸 GALLERY ANIMATION
+   GALLERY ANIMATION
    ====================================================== */
 (function () {
   const items = document.querySelectorAll('.gallery-grid-fixed .anim-item');
@@ -147,8 +138,8 @@ function copyText(txt) {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const index = [...items].indexOf(e.target);
-      setTimeout(() => e.target.classList.add('visible'), index * 90);
+      const i = [...items].indexOf(e.target);
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
       obs.unobserve(e.target);
     });
   }, { threshold: 0.18 });
@@ -157,7 +148,7 @@ function copyText(txt) {
 })();
 
 /* ======================================================
-   💞 INSTAGRAM ANIMATION + TILT
+   INSTAGRAM TILT + SHIMMER
    ====================================================== */
 (function () {
   const cards = document.querySelectorAll('.insta-card');
@@ -166,41 +157,39 @@ function copyText(txt) {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (!e.isIntersecting) return;
-      const index = [...cards].indexOf(e.target);
-      setTimeout(() => e.target.classList.add('visible'), index * 120);
+      const idx = [...cards].indexOf(e.target);
+      setTimeout(() => e.target.classList.add('visible'), idx * 120);
       obs.unobserve(e.target);
     });
   }, { threshold: 0.18 });
 
   cards.forEach(c => obs.observe(c));
 
+  /* Tilt effect for desktop */
   if (!window.matchMedia("(hover: hover)").matches) return;
 
   cards.forEach(card => {
     const frame = card.querySelector('.insta-frame');
-
     card.addEventListener("mousemove", e => {
-      const r = card.getBoundingClientRect();
-      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+      const rect = card.getBoundingClientRect();
+      const dx = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
+      const dy = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
 
       frame.style.transform =
         `translateZ(10px) rotateX(${dy * -7}deg) rotateY(${dx * 7}deg) scale(1.03)`;
     });
 
-    card.addEventListener("mouseleave", () => {
-      frame.style.transform = "";
-    });
+    card.addEventListener("mouseleave", () => frame.style.transform = "");
   });
 })();
 
 /* ======================================================
-   📍 ANIMASI KLIK TOMBOL GOOGLE MAPS
+   GOOGLE MAPS BUTTON — ANIMASI KLIK
    ====================================================== */
 document.querySelectorAll('.map-small-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     btn.classList.remove('clicked');
-    void btn.offsetWidth;
+    void btn.offsetWidth; 
     btn.classList.add('clicked');
   });
 });
