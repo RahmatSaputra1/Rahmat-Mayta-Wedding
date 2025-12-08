@@ -28,7 +28,7 @@ body {
 .intro-screen {
   position: fixed;
   inset: 0;
-  background: #d7c8a4;  /* warna intro */
+  background: #d7c8a4; /* background intro */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,8 +65,8 @@ body {
   font-weight: 700;
   text-shadow:
     0 2px 4px rgba(0,0,0,0.25),
-    0 0 12px rgba(255,235,153,0.75),
-    0 0 22px rgba(255,235,153,0.50);
+    0 0 14px rgba(255,235,153,0.75),
+    0 0 25px rgba(255,235,153,0.55);
 }
 
 .intro-date {
@@ -77,7 +77,7 @@ body {
 .btn-open {
   padding: 12px 28px;
   border-radius: 30px;
-  background: var(--accent);
+  background: #caa558;
   border: none;
   font-weight: 700;
   color: white;
@@ -85,7 +85,7 @@ body {
 }
 
 /* =======================================================
-   HERO SECTION
+   HERO
    ======================================================= */
 .hero {
   position: relative;
@@ -130,15 +130,14 @@ body {
   font-size: 1.15rem;
   color: #fff;
   font-weight: 600;
-  margin-top: 10px;
   text-shadow: 0 3px 6px rgba(0,0,0,0.55);
 }
 
 .hero-inner .date {
   margin-top: 10px;
   font-size: 1.25rem;
-  color: #fff;
   font-weight: 700;
+  color: #fff;
 }
 
 /* =======================================================
@@ -200,7 +199,7 @@ body {
 }
 
 /* =======================================================
-   GALLERY 8 FOTO
+   GALERI
    ======================================================= */
 #gallery {
   background: #fffefb;
@@ -214,6 +213,7 @@ body {
 
 .gallery-desc {
   color: var(--muted);
+  margin-bottom: 16px;
 }
 
 .gallery-grid-fixed {
@@ -248,13 +248,13 @@ body {
 }
 
 /* =======================================================
-   INSTAGRAM PROFILE
+   INSTAGRAM
    ======================================================= */
 .insta-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 28px;
+  flex-wrap: wrap;
 }
 
 .insta-card {
@@ -273,9 +273,9 @@ body {
 
 .insta-frame {
   width: 100%;
-  aspect-ratio: 3/4;
-  overflow: hidden;
+  aspect-ratio: 3 / 4;
   border-radius: 16px;
+  overflow: hidden;
   border: 6px solid rgba(202,165,88,0.25);
   transition: .35s ease;
 }
@@ -293,12 +293,11 @@ body {
   }
 }
 
-/* shimmer username */
 .insta-username a {
   color: var(--accent);
   font-weight: 700;
   position: relative;
-  text-decoration: none;
+  display: inline-block;
 }
 
 .insta-username a::after {
@@ -309,9 +308,9 @@ body {
   width: 60%;
   height: 100%;
   background: linear-gradient(90deg,
-    rgba(255,255,255,0),
-    rgba(255,255,255,0.4),
-    rgba(255,255,255,0));
+              rgba(255,255,255,0),
+              rgba(255,255,255,0.4),
+              rgba(255,255,255,0));
   transform: skewX(-20deg);
   transition: .8s;
 }
@@ -321,49 +320,30 @@ body {
 }
 
 /* =======================================================
-   MAP SMALL BUTTON
+   MAP BUTTON
    ======================================================= */
 .map-box {
-  background: #fff3f7;
+  background: #ffffffdd;
   padding: 22px;
   border-radius: 14px;
-  border: 1px solid rgba(202,165,88,0.18);
-  text-align: center;
+  border: 1px solid rgba(202,165,88,0.15);
+  margin: 20px auto;
+  max-width: 900px;
 }
 
-.map-small-btn {
-  display: inline-block;
-  padding: 8px 18px;
-  background: #ffe6ef;
-  border: 1px solid rgba(202,165,88,0.35);
-  border-radius: 14px;
-  color: #2b2b2b;
-  font-weight: 600;
+.btn-map {
+  background: var(--accent);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 30px;
   text-decoration: none;
-  font-size: 1rem;
-  transition: .25s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.map-small-btn:hover {
-  transform: translateY(-3px);
-  background: #ffdce6;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* animasi klik */
-.map-small-btn.clicked {
-  animation: bounceMap .35s ease-out;
-}
-
-@keyframes bounceMap {
-  0% { transform: scale(0.92); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 10px;
 }
 
 /* =======================================================
-   NAVBAR BAWAH
+   BOTTOM NAVBAR
    ======================================================= */
 .bottom-nav {
   position: fixed;
@@ -380,12 +360,12 @@ body {
 }
 
 .bottom-nav .nav-item {
-  flex: 1;
   text-decoration: none;
+  flex: 1;
   text-align: center;
   font-size: 22px;
   color: var(--text);
-  transition: .25s;
+  transition: .25s ease;
 }
 
 .bottom-nav .nav-item span {
@@ -409,15 +389,17 @@ body {
   width: 58px;
   height: 58px;
   border-radius: 50%;
+  border: none;
   background: var(--accent);
   color: white;
   font-size: 22px;
-  border: none;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
   z-index: 2000;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
 }
 
-.music-btn.off { background: #777; }
+.music-btn.off {
+  background: #777;
+}
 
 /* =======================================================
    PETALS
