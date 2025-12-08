@@ -42,26 +42,23 @@
 })();
 
 /* ======================================================
-   ✨ ANIMASI SCROLL SECTION
+   ✨ SECTION FADE-IN ANIMATION
    ====================================================== */
 (function () {
   const sections = document.querySelectorAll('.section');
-  if (!sections) return;
-
   const observer = new IntersectionObserver(
     entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
       });
     },
     { threshold: 0.15 }
   );
-
-  sections.forEach(section => observer.observe(section));
+  sections.forEach(sec => observer.observe(sec));
 })();
 
 /* ======================================================
-   💍 INTRO SCREEN + MUSIK FADE-IN
+   💍 INTRO SCREEN + MUSIC FADE-IN
    ====================================================== */
 (function () {
   const intro = document.getElementById('intro-screen');
@@ -70,7 +67,6 @@
 
   if (!intro || !openBtn || !music) return;
 
-  // set low initial volume; try to play (will be blocked on some browsers until interaction)
   music.volume = 0.2;
   music.play().catch(() => {});
 
@@ -79,8 +75,8 @@
 
     let vol = 0.2;
     const fadeIn = setInterval(() => {
-      if (vol < 1.0) {
-        vol = Math.min(1.0, vol + 0.06);
+      if (vol < 1) {
+        vol = Math.min(1, vol + 0.06);
         music.volume = vol;
       } else {
         clearInterval(fadeIn);
@@ -119,11 +115,11 @@ if (musicBtn && musicBg) {
   const countdownEl = document.getElementById('countdown');
   if (!countdownEl) return;
 
-  const targetDate = new Date("March 31, 2026 09:00:00").getTime();
+  const target = new Date("March 31, 2026 09:00:00").getTime();
 
-  function updateCountdown() {
+  function update() {
     const now = Date.now();
-    const diff = targetDate - now;
+    const diff = target - now;
 
     if (diff <= 0) {
       countdownEl.innerText = "💍 Hari ini adalah hari bahagia kami 💍";
@@ -131,17 +127,16 @@ if (musicBtn && musicBg) {
       return;
     }
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diff % (1000 * 60)) / 1000);
+    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-    countdownEl.innerText =
-      `💞 ${days} Hari ${hours} Jam ${mins} Menit ${secs} Detik 💞`;
+    countdownEl.innerText = `💞 ${d} Hari ${h} Jam ${m} Menit ${s} Detik 💞`;
   }
 
-  updateCountdown();
-  const timer = setInterval(updateCountdown, 1000);
+  update();
+  const timer = setInterval(update, 1000);
 })();
 
 /* ======================================================
@@ -154,44 +149,42 @@ function copyText(text) {
 }
 
 /* ======================================================
-   📸 ANIMASI GALERI (STAGGER REVEAL)
+   📸 ANIMASI GALERI — STAGGER REVEAL
    ====================================================== */
-(function galleryStaggerReveal() {
+(function galleryAnimation() {
   const items = document.querySelectorAll('.gallery-grid-fixed .anim-item');
   if (!items.length) return;
 
-  const io = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
 
       const el = entry.target;
-      let index = Array.from(items).indexOf(el);
-      const delay = Math.min(12, index) * 80;
+      const index = Array.from(items).indexOf(el);
+      const delay = Math.min(index, 12) * 90;
 
       setTimeout(() => el.classList.add('visible'), delay);
-      io.unobserve(el);
+      observer.unobserve(el);
     });
   }, { threshold: 0.18 });
 
-  items.forEach(item => io.observe(item));
+  items.forEach(item => observer.observe(item));
 })();
 
 /* ======================================================
-   💞 ANIMASI INSTAGRAM (FADE-UP + TILT HOVER + SHIMMER)
+   💞 ANIMASI INSTAGRAM (FADE + TILT + SHIMMER)
    ====================================================== */
-(function instaRevealAndTilt() {
+(function instagramAnimation() {
   const cards = document.querySelectorAll('.insta-card');
   if (!cards.length) return;
 
-  /* Fade-in stagger */
+  /* Fade stagger */
   const io = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-
       const el = entry.target;
       const index = Array.from(cards).indexOf(el);
-      const delay = Math.min(8, index) * 120;
-
+      const delay = index * 120;
       setTimeout(() => el.classList.add('visible'), delay);
       obs.unobserve(el);
     });
@@ -200,8 +193,8 @@ function copyText(text) {
   cards.forEach(c => io.observe(c));
 
   /* Tilt hover (desktop only) */
-  const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!canTilt) return;
+  const tiltEnabled = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!tiltEnabled) return;
 
   cards.forEach(card => {
     const frame = card.querySelector('.insta-frame');
@@ -219,16 +212,11 @@ function copyText(text) {
       const rotateX = -dy * 6;
 
       frame.style.transform =
-        `translateZ(8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        `translateZ(10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      frame.style.transform = '';
-    });
-
-    card.addEventListener('pointerdown', () => {
-      frame.style.transform = 'scale(0.98)';
-      setTimeout(() => frame.style.transform = '', 150);
+      frame.style.transform = "";
     });
   });
 })();
