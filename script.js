@@ -95,7 +95,7 @@
 })();
 
 /* ======================================================
-   🎵 TOMBOL MUSIK (PLAY/PAUSE)
+   🎵 TOMBOL MUSIK PLAY/PAUSE
    ====================================================== */
 const musicBtn = document.getElementById('music-btn');
 const musicBg = document.getElementById('bg-music');
@@ -149,11 +149,11 @@ if (musicBtn && musicBg) {
 function copyText(text) {
   navigator.clipboard.writeText(text)
     .then(() => alert("Nomor rekening disalin: " + text))
-    .catch(() => alert("Gagal menyalin! Salin manual: " + text));
+    .catch(() => alert("Gagal menyalin, salin manual: " + text));
 }
 
 /* ======================================================
-   📸 ANIMASI GALERI (STAGGERED FADE-UP)
+   📸 ANIMASI GALERI (STAGGER REVEAL)
    ====================================================== */
 (function galleryStaggerReveal() {
   const items = document.querySelectorAll('.gallery-grid-fixed .anim-item');
@@ -173,4 +173,61 @@ function copyText(text) {
   }, { threshold: 0.18 });
 
   items.forEach(item => io.observe(item));
+})();
+
+/* ======================================================
+   💞 ANIMASI INSTAGRAM (FADE-UP + TILT HOVER + SHIMMER)
+   ====================================================== */
+(function instaRevealAndTilt() {
+  const cards = document.querySelectorAll('.insta-card');
+  if (!cards.length) return;
+
+  /* Fade-in stagger */
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target;
+      const index = Array.from(cards).indexOf(el);
+      const delay = Math.min(8, index) * 120;
+
+      setTimeout(() => el.classList.add('visible'), delay);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.18 });
+
+  cards.forEach(c => io.observe(c));
+
+  /* Tilt hover (desktop only) */
+  const canTilt = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!canTilt) return;
+
+  cards.forEach(card => {
+    const frame = card.querySelector('.insta-frame');
+    if (!frame) return;
+
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+
+      const dx = (e.clientX - cx) / rect.width;
+      const dy = (e.clientY - cy) / rect.height;
+
+      const rotateY = dx * 6;
+      const rotateX = -dy * 6;
+
+      frame.style.transform =
+        `translateZ(8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      frame.style.transform = '';
+    });
+
+    card.addEventListener('pointerdown', () => {
+      frame.style.transform = 'scale(0.98)';
+      setTimeout(() => frame.style.transform = '', 150);
+    });
+  });
 })();
