@@ -28,7 +28,7 @@ body {
 .intro-screen {
   position: fixed;
   inset: 0;
-  background: #d7c8a4;
+  background: #d7c8a4;  /* warna intro */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +60,7 @@ body {
 
 .intro-names {
   font-family: 'Great Vibes', cursive;
-  color: #ffeb99 !important;
+  color: #ffeb99 !important;  /* GOLD SUPER TERANG */
   font-size: 3rem;
   font-weight: 700;
   text-shadow:
@@ -114,8 +114,8 @@ body {
 .hero-inner {
   position: relative;
   z-index: 5;
-  padding: 20px;
   text-align: center;
+  padding: 20px;
 }
 
 .hero-inner h1 {
@@ -130,6 +130,7 @@ body {
   font-size: 1.15rem;
   color: #fff;
   font-weight: 600;
+  margin-top: 10px;
   text-shadow: 0 3px 6px rgba(0,0,0,0.55);
 }
 
@@ -158,8 +159,8 @@ body {
 .parents-wrapper {
   display: flex;
   justify-content: center;
-  gap: 40px;
   flex-wrap: wrap;
+  gap: 40px;
 }
 
 .parent-box {
@@ -180,10 +181,11 @@ body {
 .parent-desc {
   color: var(--muted);
   font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* =======================================================
-   SECTION ANIMASI
+   SECTION ANIMATION
    ======================================================= */
 .section {
   padding: 70px 0;
@@ -198,7 +200,7 @@ body {
 }
 
 /* =======================================================
-   GALERI 8 FOTO
+   GALLERY 8 FOTO
    ======================================================= */
 #gallery {
   background: #fffefb;
@@ -208,6 +210,10 @@ body {
   font-family: 'Great Vibes', cursive;
   font-size: 2.4rem;
   color: var(--accent);
+}
+
+.gallery-desc {
+  color: var(--muted);
 }
 
 .gallery-grid-fixed {
@@ -231,8 +237,8 @@ body {
 .gallery-grid-fixed img {
   width: 100%;
   aspect-ratio: 3/4;
-  object-fit: cover;
   border-radius: 14px;
+  object-fit: cover;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   transition: .25s ease;
 }
@@ -242,7 +248,7 @@ body {
 }
 
 /* =======================================================
-   INSTAGRAM SECTION
+   INSTAGRAM PROFILE
    ======================================================= */
 .insta-row {
   display: flex;
@@ -268,8 +274,8 @@ body {
 .insta-frame {
   width: 100%;
   aspect-ratio: 3/4;
-  border-radius: 16px;
   overflow: hidden;
+  border-radius: 16px;
   border: 6px solid rgba(202,165,88,0.25);
   transition: .35s ease;
 }
@@ -280,14 +286,14 @@ body {
   object-fit: cover;
 }
 
-@media (hover: hover) and (pointer:fine) {
+@media (hover:hover) and (pointer:fine) {
   .insta-card:hover .insta-frame {
     transform: translateY(-6px) rotateX(4deg) rotateY(2deg) scale(1.02);
     box-shadow: 0 18px 40px rgba(0,0,0,0.2);
   }
 }
 
-/* shimmer efek username */
+/* shimmer username */
 .insta-username a {
   color: var(--accent);
   font-weight: 700;
@@ -315,7 +321,7 @@ body {
 }
 
 /* =======================================================
-   GOOGLE MAPS TOMBOL KECIL
+   MAP SMALL BUTTON
    ======================================================= */
 .map-box {
   background: #fff3f7;
@@ -334,6 +340,7 @@ body {
   color: #2b2b2b;
   font-weight: 600;
   text-decoration: none;
+  font-size: 1rem;
   transition: .25s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
@@ -344,7 +351,7 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-/* klik animasi */
+/* animasi klik */
 .map-small-btn.clicked {
   animation: bounceMap .35s ease-out;
 }
@@ -356,7 +363,7 @@ body {
 }
 
 /* =======================================================
-   NAVBAR BAWAH — VERSI BESAR (ASLI)
+   NAVBAR BAWAH
    ======================================================= */
 .bottom-nav {
   position: fixed;
@@ -432,7 +439,7 @@ body {
 }
 
 /* =======================================================
-   RESPONSIVE HP
+   RESPONSIVE
    ======================================================= */
 @media (max-width: 768px) {
   .hero-inner h1 { font-size: 3rem; }
