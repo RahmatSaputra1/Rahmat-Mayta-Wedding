@@ -24,57 +24,66 @@ body {
 }
 
 /* =======================================================
-   INTRO SCREEN – background kertas
+   INTRO SCREEN – Background Kertas
    ======================================================= */
+
 .intro-screen {
   position: fixed;
   inset: 0;
   background: url("assets/bg-paper.jpg") center/cover no-repeat;
-  background-color: #f5e7cc;
+  background-color: #f3e7cd;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  overflow: hidden;
 }
-
 .overlay-intro {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.12);
-  z-index: 7;
+  background: rgba(0,0,0,0.15);
 }
-
 .intro-content {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 18px;
 }
 
-.intro-sub { color: #4b4b4b; font-weight: 500; }
-.intro-title { color: #2b2b2b; }
+.intro-sub {
+  color: #4b4b4b;
+  margin-bottom: 5px;
+}
+
+.intro-title {
+  margin: 0;
+  font-weight: 600;
+}
+
 .intro-names {
   font-family: 'Great Vibes', cursive;
   font-size: 3rem;
-  color: #b07f2a;
+  color: var(--accent);
   margin: 10px 0;
   text-shadow: 0 4px 14px rgba(0,0,0,0.28);
 }
-.intro-date { color: #4b4b4b; }
 
-.btn-open {
-  padding: 12px 28px;
-  border-radius: 30px;
-  border: none;
-  font-weight: 700;
-  background: #b07f2a;
-  color: white;
-  box-shadow: 0 8px 20px rgba(176,127,42,0.18);
+.intro-date {
+  color: #4b4b4b;
+  margin-bottom: 12px;
 }
 
+.btn-open {
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 700;
+  box-shadow: 0 8px 20px rgba(176,127,42,0.2);
+}
+
+
 /* =======================================================
-   HERO
+   HERO SECTION
    ======================================================= */
 .hero {
   position: relative;
@@ -103,7 +112,7 @@ body {
 
 .hero-inner {
   position: relative;
-  z-index: 5;
+  z-index: 2;
   text-align: center;
   padding: 28px;
 }
@@ -113,24 +122,65 @@ body {
   font-size: 4.2rem;
   color: var(--accent);
   margin: 0;
-  line-height: 1.15;
-  text-shadow: 0 3px 8px rgba(0,0,0,0.55);
+  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
 
 .hero-inner .lead {
   font-size: 1.15rem;
   font-weight: 600;
   color: #fff;
-  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
   margin-top: 10px;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
 }
 
 .hero-inner .date {
+  font-size: 1.25rem;
   color: #fff;
   font-weight: 700;
-  font-size: 1.25rem;
-  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
   margin-top: 12px;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
+}
+
+/* =======================================================
+   ORANG TUA
+   ======================================================= */
+#parents {
+  background: #fffdf8;
+}
+
+.parents-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+
+.parents-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.parent-box {
+  background: #ffffffef;
+  padding: 22px 26px;
+  border-radius: 14px;
+  width: 320px;
+  border: 2px solid rgba(202,165,88,0.28);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+.parent-name {
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.parent-desc {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 /* =======================================================
@@ -140,7 +190,7 @@ body {
   padding: 70px 0;
   opacity: 0;
   transform: translateY(20px);
-  transition: all .4s ease-out;
+  transition: .4s ease-out;
 }
 
 .section.visible {
@@ -149,46 +199,12 @@ body {
 }
 
 /* =======================================================
-   INFO
+   GALERI — 8 FOTO, 2 KOLOM, ANIMASI
    ======================================================= */
-.countdown {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--accent);
-}
 
-.info-card {
-  border-radius: 14px;
-  background: #fff;
-  border: 2px solid rgba(202,165,88,0.28);
+#gallery {
+  background: #fffefb;
 }
-
-.map-box {
-  background: #ffffffee;
-  padding: 22px;
-  border-radius: 14px;
-  border: 2px solid rgba(202,165,88,0.28);
-  box-shadow: 0 6px 22px rgba(0,0,0,0.08);
-}
-
-.map-box h4 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 2rem;
-  color: var(--accent);
-}
-
-.btn-map {
-  padding: 10px 22px;
-  background: var(--accent);
-  color: white;
-  border-radius: 30px;
-  text-decoration: none;
-}
-
-/* =======================================================
-   GALERI – 8 FOTO, 2 KOLOM + ANIMASI
-   ======================================================= */
-#gallery { background: #fffefb; }
 
 .gallery-title {
   font-family: 'Great Vibes', cursive;
@@ -196,7 +212,9 @@ body {
   color: var(--accent);
 }
 
-.gallery-desc { color: var(--muted); }
+.gallery-desc {
+  color: #666;
+}
 
 .gallery-grid-fixed {
   display: grid;
@@ -205,14 +223,12 @@ body {
   padding: 10px;
 }
 
-/* initial anim state */
 .gallery-grid-fixed .anim-item {
   opacity: 0;
-  transform: translateY(18px) scale(.98);
-  transition: opacity .45s ease, transform .45s ease;
+  transform: translateY(18px) scale(.97);
+  transition: .45s ease;
 }
 
-/* visible anim */
 .gallery-grid-fixed .anim-item.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
@@ -223,19 +239,18 @@ body {
   aspect-ratio: 3/4;
   object-fit: cover;
   border-radius: 14px;
-  display: block;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  transition: transform .25s ease, box-shadow .25s ease;
+  transition: .25s ease;
 }
 
 .gallery-grid-fixed img:hover {
   transform: scale(1.03);
-  box-shadow: 0 10px 30px rgba(202,165,88,0.28);
 }
 
 /* =======================================================
-   INSTAGRAM – potret + animasi tilt + shimmer
+   INSTAGRAM — POTRET + ANIMASI TILT
    ======================================================= */
+
 .insta-row {
   display: flex;
   justify-content: center;
@@ -246,12 +261,9 @@ body {
 .insta-card {
   width: 260px;
   text-align: center;
-
   opacity: 0;
   transform: translateY(16px) scale(.985);
-  transition: opacity .45s cubic-bezier(.2,.8,.2,1),
-              transform .45s cubic-bezier(.2,.8,.2,1);
-  transform-style: preserve-3d;
+  transition: .45s ease;
   perspective: 800px;
 }
 
@@ -260,16 +272,13 @@ body {
   transform: translateY(0) scale(1);
 }
 
-/* Potret */
 .insta-frame {
   width: 100%;
   aspect-ratio: 3/4;
   border-radius: 16px;
   overflow: hidden;
   border: 6px solid rgba(202,165,88,0.25);
-  box-shadow: 0 8px 25px rgba(202,165,88,0.28);
-  transition: transform .35s cubic-bezier(.2,.8,.2,1),
-              box-shadow .35s ease;
+  transition: .35s ease;
 }
 
 .insta-frame img {
@@ -278,36 +287,36 @@ body {
   object-fit: cover;
 }
 
-/* Hover tilt (desktop only) */
-@media (hover: hover) and (pointer: fine) {
+@media (hover:hover) and (pointer:fine) {
   .insta-card:hover .insta-frame {
     transform: translateY(-6px) rotateX(4deg) rotateY(1.5deg) scale(1.02);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
   }
 }
 
-/* shimmer username */
+/* Username shimmer */
 .insta-username a {
   position: relative;
-  display: inline-block;
-  overflow: hidden;
   color: var(--accent);
   font-weight: 700;
+  display: inline-block;
 }
 
 .insta-username a::after {
   content: "";
   position: absolute;
+  inset: 0;
   left: -60%;
-  top: 0;
   width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg,
-            rgba(255,255,255,0.06),
-            rgba(255,255,255,0.18),
-            rgba(255,255,255,0.06));
-  transform: skewX(-18deg);
-  transition: left .95s cubic-bezier(.2,.8,.2,1);
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0.4),
+    rgba(255,255,255,0)
+  );
+  transform: skewX(-20deg);
+  transition: 1s;
+  pointer-events: none;
 }
 
 .insta-card:hover .insta-username a::after {
@@ -330,12 +339,12 @@ body {
 
 #transfer .card:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 20px rgba(202,165,88,0.3);
 }
 
 /* =======================================================
-   NAVBAR BAWAH
+   BOTTOM NAVBAR
    ======================================================= */
+
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -354,18 +363,16 @@ body {
 .bottom-nav .nav-item {
   flex: 1;
   text-align: center;
-  font-size: 22px;
   color: var(--text);
-  padding: 6px 0;
-  display: flex;
-  flex-direction: column;
+  font-size: 22px;
   text-decoration: none;
+  padding-top: 5px;
   transition: .25s;
 }
 
 .bottom-nav .nav-item span {
+  display: block;
   font-size: 11px;
-  margin-top: 3px;
 }
 
 .bottom-nav .nav-item.active,
@@ -379,13 +386,13 @@ body {
    ======================================================= */
 .music-btn {
   position: fixed;
-  left: 18px;
   bottom: 90px;
+  left: 18px;
   width: 56px;
   height: 56px;
   border-radius: 50%;
   background: var(--accent);
-  color: #fff;
+  color: white;
   font-size: 22px;
   border: none;
   box-shadow: 0 8px 22px rgba(0,0,0,0.2);
@@ -395,9 +402,14 @@ body {
 .music-btn.off { background: #888; }
 
 /* =======================================================
-   PETALS
+   PETALS FALLING
    ======================================================= */
-#petals { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+#petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+}
 
 .petal {
   position: absolute;
@@ -405,19 +417,19 @@ body {
   height: 12px;
   background: radial-gradient(circle at 30% 30%, #ffeaf0 0%, #ffcddf 60%);
   border-radius: 50% 30% 50% 30%;
-  opacity: 0.95;
+  opacity: 0.9;
 }
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
-@media (max-width:768px){
+
+@media (max-width: 768px) {
   .hero-inner h1 { font-size: 3rem; }
   .intro-names { font-size: 2.2rem; }
 }
 
-@media (max-width:480px){
+@media (max-width: 480px) {
   .hero-inner h1 { font-size: 2.4rem; }
-  .intro-names { font-size: 1.8rem; }
   .insta-card { width: 100%; }
 }
