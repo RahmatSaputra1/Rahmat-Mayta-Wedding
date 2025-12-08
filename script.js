@@ -42,23 +42,21 @@
 })();
 
 /* ======================================================
-   ✨ SECTION FADE-IN ANIMATION
+   ✨ SECTION FADE-IN
    ====================================================== */
 (function () {
   const sections = document.querySelectorAll('.section');
   const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    },
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    }),
     { threshold: 0.15 }
   );
-  sections.forEach(sec => observer.observe(sec));
+  sections.forEach(s => observer.observe(s));
 })();
 
 /* ======================================================
-   💍 INTRO SCREEN + MUSIC FADE-IN
+   💍 INTRO + FADE-IN MUSIC
    ====================================================== */
 (function () {
   const intro = document.getElementById('intro-screen');
@@ -67,156 +65,142 @@
 
   if (!intro || !openBtn || !music) return;
 
-  music.volume = 0.2;
+  music.volume = 0.25;
   music.play().catch(() => {});
 
   openBtn.addEventListener('click', () => {
     intro.classList.add('hide');
 
-    let vol = 0.2;
-    const fadeIn = setInterval(() => {
+    let vol = 0.25;
+    const fade = setInterval(() => {
       if (vol < 1) {
-        vol = Math.min(1, vol + 0.06);
+        vol += 0.07;
         music.volume = vol;
-      } else {
-        clearInterval(fadeIn);
-      }
-    }, 180);
+      } else clearInterval(fade);
+    }, 160);
 
     setTimeout(() => {
-      intro.style.display = 'none';
+      intro.style.display = "none";
       try { music.play(); } catch (e) {}
-      document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
     }, 900);
   });
 })();
 
 /* ======================================================
-   🎵 TOMBOL MUSIK PLAY/PAUSE
+   🎵 TOMBOL MUSIK
    ====================================================== */
-const musicBtn = document.getElementById('music-btn');
-const musicBg = document.getElementById('bg-music');
+const musicBtn = document.getElementById("music-btn");
+const musicBg = document.getElementById("bg-music");
 let isPlaying = true;
 
 if (musicBtn && musicBg) {
-  musicBtn.addEventListener('click', () => {
-    if (isPlaying) musicBg.pause();
-    else musicBg.play();
-
+  musicBtn.addEventListener("click", () => {
+    if (isPlaying) musicBg.pause(); else musicBg.play();
     isPlaying = !isPlaying;
-    musicBtn.classList.toggle('off', !isPlaying);
+    musicBtn.classList.toggle("off", !isPlaying);
   });
 }
 
 /* ======================================================
-   🕒 COUNTDOWN PERNIKAHAN
+   ⏳ COUNTDOWN
    ====================================================== */
 (function () {
-  const countdownEl = document.getElementById('countdown');
-  if (!countdownEl) return;
+  const el = document.getElementById("countdown");
+  if (!el) return;
 
   const target = new Date("March 31, 2026 09:00:00").getTime();
 
   function update() {
     const now = Date.now();
     const diff = target - now;
-
     if (diff <= 0) {
-      countdownEl.innerText = "💍 Hari ini adalah hari bahagia kami 💍";
-      clearInterval(timer);
+      el.innerText = "💍 Hari ini adalah hari bahagia kami 💍";
       return;
     }
-
     const d = Math.floor(diff / (1000 * 60 * 60 * 24));
     const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-    countdownEl.innerText = `💞 ${d} Hari ${h} Jam ${m} Menit ${s} Detik 💞`;
+    el.innerText = `💞 ${d} Hari ${h} Jam ${m} Menit ${s} Detik 💞`;
   }
 
+  setInterval(update, 1000);
   update();
-  const timer = setInterval(update, 1000);
 })();
 
 /* ======================================================
-   💳 COPY REKENING
+   💳 COPY TEXT
    ====================================================== */
-function copyText(text) {
-  navigator.clipboard.writeText(text)
-    .then(() => alert("Nomor rekening disalin: " + text))
-    .catch(() => alert("Gagal menyalin, salin manual: " + text));
+function copyText(txt) {
+  navigator.clipboard.writeText(txt)
+    .then(() => alert("Disalin: " + txt))
+    .catch(() => alert("Gagal menyalin"));
 }
 
 /* ======================================================
-   📸 ANIMASI GALERI — STAGGER REVEAL
+   📸 GALLERY ANIMATION
    ====================================================== */
-(function galleryAnimation() {
+(function () {
   const items = document.querySelectorAll('.gallery-grid-fixed .anim-item');
   if (!items.length) return;
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-
-      const el = entry.target;
-      const index = Array.from(items).indexOf(el);
-      const delay = Math.min(index, 12) * 90;
-
-      setTimeout(() => el.classList.add('visible'), delay);
-      observer.unobserve(el);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const index = [...items].indexOf(e.target);
+      setTimeout(() => e.target.classList.add('visible'), index * 90);
+      obs.unobserve(e.target);
     });
   }, { threshold: 0.18 });
 
-  items.forEach(item => observer.observe(item));
+  items.forEach(i => obs.observe(i));
 })();
 
 /* ======================================================
-   💞 ANIMASI INSTAGRAM (FADE + TILT + SHIMMER)
+   💞 INSTAGRAM ANIMATION + TILT
    ====================================================== */
-(function instagramAnimation() {
+(function () {
   const cards = document.querySelectorAll('.insta-card');
   if (!cards.length) return;
 
-  /* Fade stagger */
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const index = Array.from(cards).indexOf(el);
-      const delay = index * 120;
-      setTimeout(() => el.classList.add('visible'), delay);
-      obs.unobserve(el);
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const index = [...cards].indexOf(e.target);
+      setTimeout(() => e.target.classList.add('visible'), index * 120);
+      obs.unobserve(e.target);
     });
   }, { threshold: 0.18 });
 
-  cards.forEach(c => io.observe(c));
+  cards.forEach(c => obs.observe(c));
 
-  /* Tilt hover (desktop only) */
-  const tiltEnabled = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!tiltEnabled) return;
+  if (!window.matchMedia("(hover: hover)").matches) return;
 
   cards.forEach(card => {
     const frame = card.querySelector('.insta-frame');
-    if (!frame) return;
 
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-
-      const dx = (e.clientX - cx) / rect.width;
-      const dy = (e.clientY - cy) / rect.height;
-
-      const rotateY = dx * 6;
-      const rotateX = -dy * 6;
+    card.addEventListener("mousemove", e => {
+      const r = card.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
 
       frame.style.transform =
-        `translateZ(10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+        `translateZ(10px) rotateX(${dy * -7}deg) rotateY(${dx * 7}deg) scale(1.03)`;
     });
 
-    card.addEventListener('mouseleave', () => {
+    card.addEventListener("mouseleave", () => {
       frame.style.transform = "";
     });
   });
 })();
+
+/* ======================================================
+   📍 ANIMASI KLIK TOMBOL GOOGLE MAPS
+   ====================================================== */
+document.querySelectorAll('.map-small-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.remove('clicked');
+    void btn.offsetWidth;
+    btn.classList.add('clicked');
+  });
+});
