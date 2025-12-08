@@ -7,8 +7,7 @@
   <title>Undangan Pernikahan — Rahmat & Mayta</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=GreatVibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -17,7 +16,6 @@
   <!-- INTRO -->
   <div id="intro-screen" class="intro-screen">
     <div class="overlay-intro"></div>
-
     <div class="intro-content text-center">
       <p class="intro-sub">Dengan memohon rahmat dan ridho Allah SWT</p>
       <h2 class="intro-title">The Wedding of</h2>
@@ -48,23 +46,15 @@
       <h2 class="parents-title">Putra & Putri dari</h2>
 
       <div class="parents-wrapper">
-
         <div class="parent-box">
           <h3 class="parent-name"><strong>Rahmat Saputra</strong></h3>
-          <p class="parent-desc">
-            Putra dari Bapak <strong>Paimin</strong><br>
-            & Ibu <strong>Suparsih</strong>
-          </p>
+          <p class="parent-desc">Putra dari Bapak <strong>Paimin</strong><br>& Ibu <strong>Suparsih</strong></p>
         </div>
 
         <div class="parent-box">
           <h3 class="parent-name"><strong>Mayta Indriana</strong></h3>
-          <p class="parent-desc">
-            Putri dari Bapak <strong>Didik Sulistianto</strong><br>
-            & Ibu <strong>Kalsumah</strong>
-          </p>
+          <p class="parent-desc">Putri dari Bapak <strong>Didik Sulistianto</strong><br>& Ibu <strong>Kalsumah</strong></p>
         </div>
-
       </div>
     </div>
   </section>
@@ -84,7 +74,7 @@
       <div class="container">
         <h2>Informasi Acara</h2>
 
-        <div class="row justify-content-center mt-4">
+        <div class="row justify-content-center mt-3">
           <div class="col-md-5 mb-3">
             <div class="info-card p-4 shadow-sm">
               <h4>Akad Nikah</h4>
@@ -100,12 +90,13 @@
           </div>
         </div>
 
-        <!-- MAP SMALL BUTTON -->
-        <div class="map-box">
+        <!-- MAP BUTTON KECIL -->
+        <div class="map-box text-center">
           <p class="map-address">Jetis RT 08 RW 02, Glonggong, Gondang — Sragen</p>
-
-          <a href="https://maps.app.goo.gl/2sRfkZu5U9EEwDL88?g_st=ac" 
-             class="map-small-btn" target="_blank">
+          
+          <a href="https://maps.app.goo.gl/2sRfkZu5U9EEwDL88?g_st=ac"
+             class="map-small-btn"
+             target="_blank">
              📍 Google Maps
           </a>
         </div>
@@ -138,12 +129,12 @@
         <div class="insta-row">
           <div class="insta-card">
             <div class="insta-frame"><img src="assets/profil-rahmat.jpg"></div>
-            <div class="insta-username"><a href="#">@rahmatsaputra1922</a></div>
+            <div class="insta-username"><a>@rahmatsaputra1922</a></div>
           </div>
 
           <div class="insta-card">
             <div class="insta-frame"><img src="assets/profil-mayta.jpg"></div>
-            <div class="insta-username"><a href="#">@_mayta_indriana13</a></div>
+            <div class="insta-username"><a>@_mayta_indriana13</a></div>
           </div>
         </div>
       </div>
@@ -151,7 +142,7 @@
 
   </main>
 
-  <!-- NAVBAR BAWAH -->
+  <!-- NAVBAR -->
   <div class="bottom-nav">
     <a href="#home" class="nav-item active">🏠<span>Home</span></a>
     <a href="#info" class="nav-item">ℹ️<span>Info</span></a>
@@ -164,12 +155,12 @@
   <script src="script.js"></script>
 
   <script>
-    /* navbar active */
+    /* Navbar active */
     (function () {
-      const navItems = document.querySelectorAll('.bottom-nav .nav-item');
-      navItems.forEach(item => {
+      const nav = document.querySelectorAll('.nav-item');
+      nav.forEach(item => {
         item.addEventListener('click', () => {
-          navItems.forEach(n => n.classList.remove('active'));
+          nav.forEach(n => n.classList.remove('active'));
           item.classList.add('active');
         });
       });
