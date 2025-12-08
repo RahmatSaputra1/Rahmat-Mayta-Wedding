@@ -8,9 +8,8 @@
 
 /* RESET */
 * { box-sizing: border-box; }
-html, body { height: 100%; }
+html, body { height: 100%; margin: 0; padding: 0; }
 body {
-  margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(180deg, var(--bg1), var(--bg2));
   color: var(--text);
@@ -24,75 +23,77 @@ body {
 }
 
 /* =======================================================
-   INTRO SCREEN – Background Kertas
+   INTRO SCREEN
    ======================================================= */
-
 .intro-screen {
   position: fixed;
   inset: 0;
-  background: url("assets/bg-paper.jpg") center/cover no-repeat;
-  background-color: #f3e7cd;
+  background: #d7c8a4; /* background intro */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
+
 .overlay-intro {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.15);
+  background: rgba(0,0,0,0.12);
+  z-index: 2;
 }
+
 .intro-content {
   position: relative;
-  z-index: 10;
+  z-index: 3;
   text-align: center;
 }
 
 .intro-sub {
-  color: #4b4b4b;
-  margin-bottom: 5px;
+  color: #2b2b2b !important;
+  font-weight: 500;
 }
 
 .intro-title {
-  margin: 0;
+  color: #000 !important;
   font-weight: 600;
 }
 
 .intro-names {
   font-family: 'Great Vibes', cursive;
+  color: #ffeb99 !important;  /* GOLD SUPER TERANG */
   font-size: 3rem;
-  color: var(--accent);
-  margin: 10px 0;
-  text-shadow: 0 4px 14px rgba(0,0,0,0.28);
+  font-weight: 700;
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.25),
+    0 0 14px rgba(255,235,153,0.75),
+    0 0 25px rgba(255,235,153,0.55);
 }
 
 .intro-date {
-  color: #4b4b4b;
-  margin-bottom: 12px;
+  color: #2b2b2b !important;
+  font-weight: 600;
 }
 
 .btn-open {
-  background: var(--accent);
-  color: #fff;
   padding: 12px 28px;
-  border: none;
   border-radius: 30px;
+  background: #caa558;
+  border: none;
   font-weight: 700;
-  box-shadow: 0 8px 20px rgba(176,127,42,0.2);
+  color: white;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
 }
 
-
 /* =======================================================
-   HERO SECTION
+   HERO
    ======================================================= */
 .hero {
   position: relative;
-  height: 88vh;
-  min-height: 520px;
+  height: 85vh;
+  min-height: 530px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  overflow: hidden;
+  align-items: center;
 }
 
 .cover {
@@ -101,7 +102,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.85);
+  filter: brightness(0.80);
 }
 
 .overlay {
@@ -112,33 +113,31 @@ body {
 
 .hero-inner {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   text-align: center;
-  padding: 28px;
+  padding: 20px;
 }
 
 .hero-inner h1 {
   font-family: 'Great Vibes', cursive;
   font-size: 4.2rem;
   color: var(--accent);
+  text-shadow: 0 3px 8px rgba(0,0,0,0.55);
   margin: 0;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
 
 .hero-inner .lead {
   font-size: 1.15rem;
-  font-weight: 600;
   color: #fff;
-  margin-top: 10px;
+  font-weight: 600;
   text-shadow: 0 3px 6px rgba(0,0,0,0.55);
 }
 
 .hero-inner .date {
+  margin-top: 10px;
   font-size: 1.25rem;
-  color: #fff;
   font-weight: 700;
-  margin-top: 12px;
-  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
+  color: #fff;
 }
 
 /* =======================================================
@@ -146,13 +145,14 @@ body {
    ======================================================= */
 #parents {
   background: #fffdf8;
+  padding-top: 60px;
 }
 
 .parents-title {
   font-family: 'Great Vibes', cursive;
   font-size: 2.4rem;
   color: var(--accent);
-  margin-bottom: 28px;
+  margin-bottom: 25px;
 }
 
 .parents-wrapper {
@@ -163,18 +163,18 @@ body {
 }
 
 .parent-box {
-  background: #ffffffef;
-  padding: 22px 26px;
-  border-radius: 14px;
   width: 320px;
-  border: 2px solid rgba(202,165,88,0.28);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  background: #ffffffef;
+  border-radius: 14px;
+  border: 2px solid rgba(202,165,88,0.25);
+  padding: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
 
 .parent-name {
-  font-size: 1.3rem;
   color: var(--accent);
-  margin-bottom: 6px;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .parent-desc {
@@ -199,9 +199,8 @@ body {
 }
 
 /* =======================================================
-   GALERI — 8 FOTO, 2 KOLOM, ANIMASI
+   GALERI
    ======================================================= */
-
 #gallery {
   background: #fffefb;
 }
@@ -213,7 +212,8 @@ body {
 }
 
 .gallery-desc {
-  color: #666;
+  color: var(--muted);
+  margin-bottom: 16px;
 }
 
 .gallery-grid-fixed {
@@ -225,7 +225,7 @@ body {
 
 .gallery-grid-fixed .anim-item {
   opacity: 0;
-  transform: translateY(18px) scale(.97);
+  transform: translateY(16px) scale(.97);
   transition: .45s ease;
 }
 
@@ -237,9 +237,9 @@ body {
 .gallery-grid-fixed img {
   width: 100%;
   aspect-ratio: 3/4;
-  object-fit: cover;
   border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   transition: .25s ease;
 }
 
@@ -248,9 +248,8 @@ body {
 }
 
 /* =======================================================
-   INSTAGRAM — POTRET + ANIMASI TILT
+   INSTAGRAM
    ======================================================= */
-
 .insta-row {
   display: flex;
   justify-content: center;
@@ -263,7 +262,7 @@ body {
   text-align: center;
   opacity: 0;
   transform: translateY(16px) scale(.985);
-  transition: .45s ease;
+  transition: .5s ease;
   perspective: 800px;
 }
 
@@ -274,7 +273,7 @@ body {
 
 .insta-frame {
   width: 100%;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3 / 4;
   border-radius: 16px;
   overflow: hidden;
   border: 6px solid rgba(202,165,88,0.25);
@@ -289,34 +288,31 @@ body {
 
 @media (hover:hover) and (pointer:fine) {
   .insta-card:hover .insta-frame {
-    transform: translateY(-6px) rotateX(4deg) rotateY(1.5deg) scale(1.02);
+    transform: translateY(-6px) rotateX(4deg) rotateY(2deg) scale(1.02);
     box-shadow: 0 18px 40px rgba(0,0,0,0.2);
   }
 }
 
-/* Username shimmer */
 .insta-username a {
-  position: relative;
   color: var(--accent);
   font-weight: 700;
+  position: relative;
   display: inline-block;
 }
 
 .insta-username a::after {
   content: "";
   position: absolute;
-  inset: 0;
   left: -60%;
+  top: 0;
   width: 60%;
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0),
-    rgba(255,255,255,0.4),
-    rgba(255,255,255,0)
-  );
+  height: 100%;
+  background: linear-gradient(90deg,
+              rgba(255,255,255,0),
+              rgba(255,255,255,0.4),
+              rgba(255,255,255,0));
   transform: skewX(-20deg);
-  transition: 1s;
-  pointer-events: none;
+  transition: .8s;
 }
 
 .insta-card:hover .insta-username a::after {
@@ -324,50 +320,52 @@ body {
 }
 
 /* =======================================================
-   AMPLOP DIGITAL
+   MAP BUTTON
    ======================================================= */
-#transfer h2 {
-  font-family: 'Great Vibes', cursive;
-  color: var(--accent);
+.map-box {
+  background: #ffffffdd;
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid rgba(202,165,88,0.15);
+  margin: 20px auto;
+  max-width: 900px;
 }
 
-#transfer .card {
-  border: 2px solid rgba(202,165,88,0.28);
-  border-radius: 12px;
-  transition: .25s;
-}
-
-#transfer .card:hover {
-  transform: scale(1.02);
+.btn-map {
+  background: var(--accent);
+  color: white;
+  padding: 12px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-block;
+  margin-top: 10px;
 }
 
 /* =======================================================
    BOTTOM NAVBAR
    ======================================================= */
-
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  left: 0;
-  height: 65px;
   width: 100%;
+  height: 65px;
   background: #ffffffee;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
   z-index: 2000;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
 }
 
 .bottom-nav .nav-item {
+  text-decoration: none;
   flex: 1;
   text-align: center;
-  color: var(--text);
   font-size: 22px;
-  text-decoration: none;
-  padding-top: 5px;
-  transition: .25s;
+  color: var(--text);
+  transition: .25s ease;
 }
 
 .bottom-nav .nav-item span {
@@ -382,27 +380,29 @@ body {
 }
 
 /* =======================================================
-   TOMBOL MUSIK
+   MUSIC BUTTON
    ======================================================= */
 .music-btn {
   position: fixed;
-  bottom: 90px;
   left: 18px;
-  width: 56px;
-  height: 56px;
+  bottom: 90px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
+  border: none;
   background: var(--accent);
   color: white;
   font-size: 22px;
-  border: none;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
   z-index: 2000;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
 }
 
-.music-btn.off { background: #888; }
+.music-btn.off {
+  background: #777;
+}
 
 /* =======================================================
-   PETALS FALLING
+   PETALS
    ======================================================= */
 #petals {
   position: fixed;
@@ -415,21 +415,20 @@ body {
   position: absolute;
   width: 12px;
   height: 12px;
-  background: radial-gradient(circle at 30% 30%, #ffeaf0 0%, #ffcddf 60%);
+  background: radial-gradient(circle at 30% 30%, #ffeaf0, #ffcddf);
   border-radius: 50% 30% 50% 30%;
-  opacity: 0.9;
+  opacity: .9;
 }
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
-
 @media (max-width: 768px) {
   .hero-inner h1 { font-size: 3rem; }
-  .intro-names { font-size: 2.2rem; }
+  .intro-names { font-size: 2.4rem; }
 }
 
 @media (max-width: 480px) {
-  .hero-inner h1 { font-size: 2.4rem; }
+  .hero-inner h1 { font-size: 2.5rem; }
   .insta-card { width: 100%; }
 }
