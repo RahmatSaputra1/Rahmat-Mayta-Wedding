@@ -8,8 +8,9 @@
 
 /* RESET */
 * { box-sizing: border-box; }
-html, body { height: 100%; margin: 0; padding: 0; }
+html, body { height: 100%; }
 body {
+  margin: 0;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(180deg, var(--bg1), var(--bg2));
   color: var(--text);
@@ -23,77 +24,75 @@ body {
 }
 
 /* =======================================================
-   INTRO SCREEN
+   INTRO SCREEN – Background Kertas
    ======================================================= */
+
 .intro-screen {
   position: fixed;
   inset: 0;
-  background: #d7c8a4;  /* warna intro */
+  background: url("assets/bg-paper.jpg") center/cover no-repeat;
+  background-color: #f3e7cd;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
 }
-
 .overlay-intro {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.12);
-  z-index: 2;
+  background: rgba(0,0,0,0.15);
 }
-
 .intro-content {
   position: relative;
-  z-index: 3;
+  z-index: 10;
   text-align: center;
 }
 
 .intro-sub {
-  color: #2b2b2b !important;
-  font-weight: 500;
+  color: #4b4b4b;
+  margin-bottom: 5px;
 }
 
 .intro-title {
-  color: #000 !important;
+  margin: 0;
   font-weight: 600;
 }
 
 .intro-names {
   font-family: 'Great Vibes', cursive;
-  color: #ffeb99 !important;  /* GOLD SUPER TERANG */
   font-size: 3rem;
-  font-weight: 700;
-  text-shadow:
-    0 2px 4px rgba(0,0,0,0.25),
-    0 0 12px rgba(255,235,153,0.75),
-    0 0 22px rgba(255,235,153,0.50);
+  color: var(--accent);
+  margin: 10px 0;
+  text-shadow: 0 4px 14px rgba(0,0,0,0.28);
 }
 
 .intro-date {
-  color: #2b2b2b !important;
-  font-weight: 600;
+  color: #4b4b4b;
+  margin-bottom: 12px;
 }
 
 .btn-open {
-  padding: 12px 28px;
-  border-radius: 30px;
   background: var(--accent);
+  color: #fff;
+  padding: 12px 28px;
   border: none;
+  border-radius: 30px;
   font-weight: 700;
-  color: white;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 20px rgba(176,127,42,0.2);
 }
+
 
 /* =======================================================
    HERO SECTION
    ======================================================= */
 .hero {
   position: relative;
-  height: 85vh;
-  min-height: 530px;
+  height: 88vh;
+  min-height: 520px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .cover {
@@ -102,7 +101,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.80);
+  filter: brightness(0.85);
 }
 
 .overlay {
@@ -113,32 +112,33 @@ body {
 
 .hero-inner {
   position: relative;
-  z-index: 5;
+  z-index: 2;
   text-align: center;
-  padding: 20px;
+  padding: 28px;
 }
 
 .hero-inner h1 {
   font-family: 'Great Vibes', cursive;
   font-size: 4.2rem;
   color: var(--accent);
-  text-shadow: 0 3px 8px rgba(0,0,0,0.55);
   margin: 0;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.5);
 }
 
 .hero-inner .lead {
   font-size: 1.15rem;
-  color: #fff;
   font-weight: 600;
+  color: #fff;
   margin-top: 10px;
   text-shadow: 0 3px 6px rgba(0,0,0,0.55);
 }
 
 .hero-inner .date {
-  margin-top: 10px;
   font-size: 1.25rem;
   color: #fff;
   font-weight: 700;
+  margin-top: 12px;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.55);
 }
 
 /* =======================================================
@@ -146,14 +146,13 @@ body {
    ======================================================= */
 #parents {
   background: #fffdf8;
-  padding-top: 60px;
 }
 
 .parents-title {
   font-family: 'Great Vibes', cursive;
   font-size: 2.4rem;
   color: var(--accent);
-  margin-bottom: 25px;
+  margin-bottom: 28px;
 }
 
 .parents-wrapper {
@@ -164,18 +163,18 @@ body {
 }
 
 .parent-box {
-  width: 320px;
   background: #ffffffef;
+  padding: 22px 26px;
   border-radius: 14px;
-  border: 2px solid rgba(202,165,88,0.25);
-  padding: 22px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  width: 320px;
+  border: 2px solid rgba(202,165,88,0.28);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
 }
 
 .parent-name {
-  color: var(--accent);
   font-size: 1.3rem;
-  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 6px;
 }
 
 .parent-desc {
@@ -200,8 +199,9 @@ body {
 }
 
 /* =======================================================
-   GALLERY 8 FOTO
+   GALERI — 8 FOTO, 2 KOLOM, ANIMASI
    ======================================================= */
+
 #gallery {
   background: #fffefb;
 }
@@ -213,7 +213,7 @@ body {
 }
 
 .gallery-desc {
-  color: var(--muted);
+  color: #666;
 }
 
 .gallery-grid-fixed {
@@ -225,7 +225,7 @@ body {
 
 .gallery-grid-fixed .anim-item {
   opacity: 0;
-  transform: translateY(16px) scale(.97);
+  transform: translateY(18px) scale(.97);
   transition: .45s ease;
 }
 
@@ -237,9 +237,9 @@ body {
 .gallery-grid-fixed img {
   width: 100%;
   aspect-ratio: 3/4;
-  border-radius: 14px;
   object-fit: cover;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
   transition: .25s ease;
 }
 
@@ -248,13 +248,14 @@ body {
 }
 
 /* =======================================================
-   INSTAGRAM PROFILE
+   INSTAGRAM — POTRET + ANIMASI TILT
    ======================================================= */
+
 .insta-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 28px;
+  flex-wrap: wrap;
 }
 
 .insta-card {
@@ -262,7 +263,7 @@ body {
   text-align: center;
   opacity: 0;
   transform: translateY(16px) scale(.985);
-  transition: .5s ease;
+  transition: .45s ease;
   perspective: 800px;
 }
 
@@ -274,8 +275,8 @@ body {
 .insta-frame {
   width: 100%;
   aspect-ratio: 3/4;
-  overflow: hidden;
   border-radius: 16px;
+  overflow: hidden;
   border: 6px solid rgba(202,165,88,0.25);
   transition: .35s ease;
 }
@@ -288,32 +289,34 @@ body {
 
 @media (hover:hover) and (pointer:fine) {
   .insta-card:hover .insta-frame {
-    transform: translateY(-6px) rotateX(4deg) rotateY(2deg) scale(1.02);
+    transform: translateY(-6px) rotateX(4deg) rotateY(1.5deg) scale(1.02);
     box-shadow: 0 18px 40px rgba(0,0,0,0.2);
   }
 }
 
-/* shimmer username */
+/* Username shimmer */
 .insta-username a {
+  position: relative;
   color: var(--accent);
   font-weight: 700;
-  position: relative;
-  text-decoration: none;
+  display: inline-block;
 }
 
 .insta-username a::after {
   content: "";
   position: absolute;
+  inset: 0;
   left: -60%;
-  top: 0;
   width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     rgba(255,255,255,0),
     rgba(255,255,255,0.4),
-    rgba(255,255,255,0));
+    rgba(255,255,255,0)
+  );
   transform: skewX(-20deg);
-  transition: .8s;
+  transition: 1s;
+  pointer-events: none;
 }
 
 .insta-card:hover .insta-username a::after {
@@ -321,70 +324,49 @@ body {
 }
 
 /* =======================================================
-   MAP SMALL BUTTON
+   AMPLOP DIGITAL
    ======================================================= */
-.map-box {
-  background: #fff3f7;
-  padding: 22px;
-  border-radius: 14px;
-  border: 1px solid rgba(202,165,88,0.18);
-  text-align: center;
+#transfer h2 {
+  font-family: 'Great Vibes', cursive;
+  color: var(--accent);
 }
 
-.map-small-btn {
-  display: inline-block;
-  padding: 8px 18px;
-  background: #ffe6ef;
-  border: 1px solid rgba(202,165,88,0.35);
-  border-radius: 14px;
-  color: #2b2b2b;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: .25s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+#transfer .card {
+  border: 2px solid rgba(202,165,88,0.28);
+  border-radius: 12px;
+  transition: .25s;
 }
 
-.map-small-btn:hover {
-  transform: translateY(-3px);
-  background: #ffdce6;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* animasi klik */
-.map-small-btn.clicked {
-  animation: bounceMap .35s ease-out;
-}
-
-@keyframes bounceMap {
-  0% { transform: scale(0.92); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
+#transfer .card:hover {
+  transform: scale(1.02);
 }
 
 /* =======================================================
-   NAVBAR BAWAH
+   BOTTOM NAVBAR
    ======================================================= */
+
 .bottom-nav {
   position: fixed;
   bottom: 0;
-  width: 100%;
+  left: 0;
   height: 65px;
+  width: 100%;
   background: #ffffffee;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 2000;
   box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+  z-index: 2000;
 }
 
 .bottom-nav .nav-item {
   flex: 1;
-  text-decoration: none;
   text-align: center;
-  font-size: 22px;
   color: var(--text);
+  font-size: 22px;
+  text-decoration: none;
+  padding-top: 5px;
   transition: .25s;
 }
 
@@ -400,14 +382,14 @@ body {
 }
 
 /* =======================================================
-   MUSIC BUTTON
+   TOMBOL MUSIK
    ======================================================= */
 .music-btn {
   position: fixed;
-  left: 18px;
   bottom: 90px;
-  width: 58px;
-  height: 58px;
+  left: 18px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: var(--accent);
   color: white;
@@ -417,10 +399,10 @@ body {
   z-index: 2000;
 }
 
-.music-btn.off { background: #777; }
+.music-btn.off { background: #888; }
 
 /* =======================================================
-   PETALS
+   PETALS FALLING
    ======================================================= */
 #petals {
   position: fixed;
@@ -433,20 +415,21 @@ body {
   position: absolute;
   width: 12px;
   height: 12px;
-  background: radial-gradient(circle at 30% 30%, #ffeaf0, #ffcddf);
+  background: radial-gradient(circle at 30% 30%, #ffeaf0 0%, #ffcddf 60%);
   border-radius: 50% 30% 50% 30%;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 /* =======================================================
    RESPONSIVE
    ======================================================= */
+
 @media (max-width: 768px) {
   .hero-inner h1 { font-size: 3rem; }
-  .intro-names { font-size: 2.4rem; }
+  .intro-names { font-size: 2.2rem; }
 }
 
 @media (max-width: 480px) {
-  .hero-inner h1 { font-size: 2.5rem; }
+  .hero-inner h1 { font-size: 2.4rem; }
   .insta-card { width: 100%; }
 }
