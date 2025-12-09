@@ -1,222 +1,206 @@
 /* ======================================================
-   🌸 EFEK KELOPAK BUNGA
+   🌸 PETALS
    ====================================================== */
 (function createPetals() {
-  const container = document.getElementById('petals');
-  if (!container) return;
+  const wrap = document.getElementById("petals");
+  if (!wrap) return;
 
   const count = 18;
-  const screenHeight = window.innerHeight;
+  const h = window.innerHeight;
 
   for (let i = 0; i < count; i++) {
-    const el = document.createElement('div');
-    el.className = 'petal';
-    el.style.left = Math.random() * 100 + '%';
-    el.style.top = -Math.random() * 20 - 5 + '%';
+    const p = document.createElement("div");
+    p.classList.add("petal");
+    p.style.left = Math.random() * 100 + "%";
+    p.style.top = -Math.random() * 20 - 5 + "%";
 
     const size = 8 + Math.random() * 10;
-    el.style.width = size + 'px';
-    el.style.height = size + 'px';
+    p.style.width = size + "px";
+    p.style.height = size + "px";
 
-    container.appendChild(el);
+    wrap.appendChild(p);
 
-    const duration = 4 + Math.random() * 4;
-    const delay = Math.random() * 2;
+    const dur = 4 + Math.random() * 4;
+    const del = Math.random() * 2;
 
-    el.animate(
+    p.animate(
       [
-        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+        { transform: "translateY(0) rotate(0)", opacity: 1 },
         {
-          transform: `translateY(${screenHeight + 200}px) rotate(${360 + Math.random() * 720}deg)`,
-          opacity: 0.9
-        }
+          transform: `translateY(${h + 200}px)
+                      rotate(${360 + Math.random() * 720}deg)`,
+          opacity: 0.9,
+        },
       ],
       {
-        duration: duration * 1000,
-        delay: delay * 1000,
+        duration: dur * 1000,
+        delay: del * 1000,
         iterations: Infinity,
-        easing: 'linear'
+        easing: "linear",
       }
     );
   }
 })();
 
 /* ======================================================
-   ✨ SECTION FADE-IN ANIMATION
+   ✨ SECTION FADE IN
    ====================================================== */
 (function () {
-  const sections = document.querySelectorAll('.section');
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    },
+  const sect = document.querySelectorAll(".section");
+  const obs = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("visible");
+      }),
     { threshold: 0.15 }
   );
-  sections.forEach(sec => observer.observe(sec));
+  sect.forEach((s) => obs.observe(s));
 })();
 
 /* ======================================================
-   💍 INTRO SCREEN + MUSIC FADE-IN
+   💍 INTRO + MUSIC
    ====================================================== */
 (function () {
-  const intro = document.getElementById('intro-screen');
-  const openBtn = document.getElementById('open-invite');
-  const music = document.getElementById('bg-music');
+  const intro = document.getElementById("intro-screen");
+  const openBtn = document.getElementById("open-invite");
+  const music = document.getElementById("bg-music");
 
-  if (!intro || !openBtn || !music) return;
+  if (!intro || !openBtn) return;
 
-  music.volume = 0.2;
-  music.play().catch(() => {});
+  music.volume = 0.25;
 
-  openBtn.addEventListener('click', () => {
-    intro.classList.add('hide');
+  openBtn.addEventListener("click", () => {
+    intro.classList.add("hide");
 
-    let vol = 0.2;
-    const fadeIn = setInterval(() => {
-      if (vol < 1) {
-        vol = Math.min(1, vol + 0.06);
-        music.volume = vol;
-      } else {
-        clearInterval(fadeIn);
-      }
-    }, 180);
+    let vol = 0.25;
+    const fade = setInterval(() => {
+      if (vol < 1) music.volume = (vol += 0.07);
+      else clearInterval(fade);
+    }, 160);
 
     setTimeout(() => {
-      intro.style.display = 'none';
-      try { music.play(); } catch (e) {}
-      document.querySelectorAll('.section').forEach(s => s.classList.add('visible'));
+      intro.style.display = "none";
+      music.play().catch(() => {});
     }, 900);
   });
 })();
 
 /* ======================================================
-   🎵 TOMBOL MUSIK PLAY/PAUSE
+   🎵 MUSIC BUTTON
    ====================================================== */
-const musicBtn = document.getElementById('music-btn');
-const musicBg = document.getElementById('bg-music');
-let isPlaying = true;
+const musicBtn = document.getElementById("music-btn");
+const bgm = document.getElementById("bg-music");
+let on = true;
 
-if (musicBtn && musicBg) {
-  musicBtn.addEventListener('click', () => {
-    if (isPlaying) musicBg.pause();
-    else musicBg.play();
-
-    isPlaying = !isPlaying;
-    musicBtn.classList.toggle('off', !isPlaying);
-  });
-}
+musicBtn.addEventListener("click", () => {
+  if (on) bgm.pause();
+  else bgm.play();
+  on = !on;
+  musicBtn.classList.toggle("off", !on);
+});
 
 /* ======================================================
-   🕒 COUNTDOWN PERNIKAHAN
+   🕒 COUNTDOWN
    ====================================================== */
 (function () {
-  const countdownEl = document.getElementById('countdown');
-  if (!countdownEl) return;
+  const el = document.getElementById("countdown");
+  if (!el) return;
 
   const target = new Date("March 31, 2026 09:00:00").getTime();
 
-  function update() {
+  function tick() {
     const now = Date.now();
     const diff = target - now;
 
     if (diff <= 0) {
-      countdownEl.innerText = "💍 Hari ini adalah hari bahagia kami 💍";
-      clearInterval(timer);
+      el.innerHTML = "💍 Hari ini hari bahagia kami 💍";
       return;
     }
 
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diff % (1000 * 60)) / 1000);
+    const d = Math.floor(diff / (864e5));
+    const h = Math.floor((diff % 864e5) / 36e5);
+    const m = Math.floor((diff % 36e5) / 6e4);
+    const s = Math.floor((diff % 6e4) / 1e3);
 
-    countdownEl.innerText = `💞 ${d} Hari ${h} Jam ${m} Menit ${s} Detik 💞`;
+    el.innerHTML = `💞 ${d} Hari ${h} Jam ${m} Menit ${s} Detik 💞`;
   }
 
-  update();
-  const timer = setInterval(update, 1000);
+  tick();
+  setInterval(tick, 1000);
 })();
 
 /* ======================================================
-   💳 COPY REKENING
+   📸 GALERI ANIMASI
    ====================================================== */
-function copyText(text) {
-  navigator.clipboard.writeText(text)
-    .then(() => alert("Nomor rekening disalin: " + text))
-    .catch(() => alert("Gagal menyalin, salin manual: " + text));
-}
-
-/* ======================================================
-   📸 ANIMASI GALERI — STAGGER REVEAL
-   ====================================================== */
-(function galleryAnimation() {
-  const items = document.querySelectorAll('.gallery-grid-fixed .anim-item');
+(function () {
+  const items = document.querySelectorAll(".gallery-grid-fixed .anim-item");
   if (!items.length) return;
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
+  const obs = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const i = [...items].indexOf(e.target);
+        setTimeout(() => e.target.classList.add("visible"), i * 80);
+        obs.unobserve(e.target);
+      }),
+    { threshold: 0.18 }
+  );
 
-      const el = entry.target;
-      const index = Array.from(items).indexOf(el);
-      const delay = Math.min(index, 12) * 90;
-
-      setTimeout(() => el.classList.add('visible'), delay);
-      observer.unobserve(el);
-    });
-  }, { threshold: 0.18 });
-
-  items.forEach(item => observer.observe(item));
+  items.forEach((i) => obs.observe(i));
 })();
 
 /* ======================================================
-   💞 ANIMASI INSTAGRAM (FADE + TILT + SHIMMER)
+   💞 INSTAGRAM ANIMATIONS
    ====================================================== */
-(function instagramAnimation() {
-  const cards = document.querySelectorAll('.insta-card');
+(function () {
+  const cards = document.querySelectorAll(".insta-card");
   if (!cards.length) return;
 
-  /* Fade stagger */
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const index = Array.from(cards).indexOf(el);
-      const delay = index * 120;
-      setTimeout(() => el.classList.add('visible'), delay);
-      obs.unobserve(el);
-    });
-  }, { threshold: 0.18 });
+  const obs = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const idx = [...cards].indexOf(e.target);
+        setTimeout(() => e.target.classList.add("visible"), idx * 100);
+        obs.unobserve(e.target);
+      }),
+    { threshold: 0.18 }
+  );
 
-  cards.forEach(c => io.observe(c));
+  cards.forEach((c) => obs.observe(c));
 
-  /* Tilt hover (desktop only) */
-  const tiltEnabled = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (!tiltEnabled) return;
+  if (!window.matchMedia("(hover:hover)").matches) return;
 
-  cards.forEach(card => {
-    const frame = card.querySelector('.insta-frame');
-    if (!frame) return;
+  cards.forEach((card) => {
+    const frame = card.querySelector(".insta-frame");
 
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
+    card.addEventListener("mousemove", (e) => {
+      const r = card.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
+      const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
 
-      const dx = (e.clientX - cx) / rect.width;
-      const dy = (e.clientY - cy) / rect.height;
-
-      const rotateY = dx * 6;
-      const rotateX = -dy * 6;
-
-      frame.style.transform =
-        `translateZ(10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+      frame.style.transform = `
+        translateZ(12px)
+        rotateX(${dy * -7}deg)
+        rotateY(${dx * 7}deg)
+        scale(1.03)
+      `;
     });
 
-    card.addEventListener('mouseleave', () => {
+    card.addEventListener("mouseleave", () => {
       frame.style.transform = "";
     });
   });
 })();
+
+/* ======================================================
+   📍 MAP BUTTON CLICK EFFECT
+   ====================================================== */
+document.querySelectorAll(".map-small-btn").forEach((b) => {
+  b.addEventListener("click", () => {
+    b.classList.remove("clicked");
+    void b.offsetWidth;
+    b.classList.add("clicked");
+  });
+});
