@@ -107,57 +107,7 @@
         <p class="map-address">Jetis RT 08 RW 02, Glonggong, Gondang — Sragen</p>
 
         <a href="https://maps.app.goo.gl/2sRfkZu5U9EEwDL88?g_st=ac"
-           class="map-small-btn" target="_blank">📍 Google Maps</a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- RSVP -->
-  <section id="rsvp" class="section text-center">
-    <div class="container">
-      <h2>Konfirmasi Kehadiran (RSVP)</h2>
-
-      <form id="rsvp-form" class="rsvp-form row g-3 justify-content-center" novalidate>
-
-        <div class="col-12 col-md-6">
-          <label class="form-label">Nama Lengkap</label>
-          <input id="rsvp-name" class="form-control" required>
-        </div>
-
-        <div class="col-6 col-md-2">
-          <label class="form-label">Jumlah</label>
-          <input id="rsvp-count" type="number" value="1" min="1" class="form-control">
-        </div>
-
-        <div class="col-6 col-md-3">
-          <label class="form-label">Kehadiran</label>
-          <select id="rsvp-attend" class="form-select" required>
-            <option value="">Pilih</option>
-            <option value="Hadir">Hadir</option>
-            <option value="Berhalangan">Berhalangan</option>
-          </select>
-        </div>
-
-        <div class="col-12 col-md-9">
-          <label class="form-label">Pesan (opsional)</label>
-          <textarea id="rsvp-note" class="form-control" rows="2"></textarea>
-        </div>
-
-        <div class="col-12 col-md-9">
-          <button id="rsvp-submit" class="btn btn-primary btn-lg">
-            Kirim Konfirmasi
-          </button>
-        </div>
-
-      </form>
-
-      <div id="rsvp-thanks" class="rsvp-thanks" aria-hidden="true">
-        <div class="rsvp-thanks-inner">
-          <h3>Terima kasih!</h3>
-          <p>Konfirmasi Anda telah diterima.</p>
-          <button id="rsvp-close" class="btn btn-outline-secondary">Tutup</button>
-        </div>
+           class="map-small-btn" target="_blank" rel="noopener">📍 Google Maps</a>
       </div>
 
     </div>
@@ -169,14 +119,14 @@
       <h2 class="gallery-title">Our Gallery</h2>
 
       <div class="gallery-grid-fixed">
-        <div class="anim-item"><img src="assets/foto1.jpg"></div>
-        <div class="anim-item"><img src="assets/foto2.jpg"></div>
-        <div class="anim-item"><img src="assets/foto3.jpg"></div>
-        <div class="anim-item"><img src="assets/foto4.jpg"></div>
-        <div class="anim-item"><img src="assets/foto5.jpg"></div>
-        <div class="anim-item"><img src="assets/foto6.jpg"></div>
-        <div class="anim-item"><img src="assets/foto7.jpg"></div>
-        <div class="anim-item"><img src="assets/foto8.jpg"></div>
+        <div class="anim-item"><img src="assets/foto1.jpg" alt="foto1"></div>
+        <div class="anim-item"><img src="assets/foto2.jpg" alt="foto2"></div>
+        <div class="anim-item"><img src="assets/foto3.jpg" alt="foto3"></div>
+        <div class="anim-item"><img src="assets/foto4.jpg" alt="foto4"></div>
+        <div class="anim-item"><img src="assets/foto5.jpg" alt="foto5"></div>
+        <div class="anim-item"><img src="assets/foto6.jpg" alt="foto6"></div>
+        <div class="anim-item"><img src="assets/foto7.jpg" alt="foto7"></div>
+        <div class="anim-item"><img src="assets/foto8.jpg" alt="foto8"></div>
       </div>
     </div>
   </section>
@@ -190,12 +140,12 @@
 
         <a class="insta-card-link"
            href="https://instagram.com/rahmatsaputra1922"
-           target="_blank">
+           target="_blank" rel="noopener noreferrer">
 
           <div class="insta-card">
             <div class="insta-frame">
               <img src="assets/profil-rahmat.jpg"
-                onerror="this.src='assets/placeholder-profile.jpg'">
+                alt="Rahmat" onerror="this.src='assets/placeholder-profile.jpg'">
             </div>
             <div class="insta-username">@rahmatsaputra1922</div>
           </div>
@@ -203,12 +153,12 @@
 
         <a class="insta-card-link"
            href="https://instagram.com/_mayta_indriana13"
-           target="_blank">
+           target="_blank" rel="noopener noreferrer">
 
           <div class="insta-card">
             <div class="insta-frame">
               <img src="assets/profil-mayta.jpg"
-                onerror="this.src='assets/placeholder-profile.jpg'">
+                alt="Mayta" onerror="this.src='assets/placeholder-profile.jpg'">
             </div>
             <div class="insta-username">@_mayta_indriana13</div>
           </div>
@@ -218,7 +168,7 @@
     </div>
   </section>
 
-  <!-- REKENING -->
+  <!-- REKENING / AMPLOP DIGITAL -->
   <section id="transfer" class="section text-center">
     <div class="container">
       <h2>Amplop Digital 💌</h2>
@@ -244,6 +194,56 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- RSVP (DITARUH PALING BAWAH SEBELUM NAVBAR) -->
+  <section id="rsvp" class="section text-center">
+    <div class="container">
+      <h2>Konfirmasi Kehadiran (RSVP)</h2>
+
+      <form id="rsvp-form" class="rsvp-form row g-3 justify-content-center" novalidate>
+
+        <div class="col-12 col-md-6">
+          <label class="form-label">Nama Lengkap</label>
+          <input id="rsvp-name" class="form-control" placeholder="Nama lengkap" required>
+        </div>
+
+        <div class="col-6 col-md-2">
+          <label class="form-label">Jumlah</label>
+          <input id="rsvp-count" type="number" value="1" min="1" class="form-control">
+        </div>
+
+        <div class="col-6 col-md-3">
+          <label class="form-label">Kehadiran</label>
+          <select id="rsvp-attend" class="form-select" required>
+            <option value="">Pilih</option>
+            <option value="Hadir">Hadir</option>
+            <option value="Berhalangan">Berhalangan</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-md-9">
+          <label class="form-label">Pesan (opsional)</label>
+          <textarea id="rsvp-note" class="form-control" rows="2" placeholder="Contoh: datang jam 10, membawa anak, dsb."></textarea>
+        </div>
+
+        <div class="col-12 col-md-9">
+          <button id="rsvp-submit" class="btn btn-primary btn-lg">
+            Kirim Konfirmasi
+          </button>
+        </div>
+
+      </form>
+
+      <div id="rsvp-thanks" class="rsvp-thanks" aria-hidden="true">
+        <div class="rsvp-thanks-inner">
+          <h3>Terima kasih!</h3>
+          <p>Konfirmasi Anda telah diterima.</p>
+          <button id="rsvp-close" class="btn btn-outline-secondary">Tutup</button>
+        </div>
+      </div>
+
     </div>
   </section>
 
