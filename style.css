@@ -1,7 +1,7 @@
 :root {
   --bg1: #ffeef6;
   --bg2: #fffdf8;
-  --accent: #caa558;  /* gold */
+  --accent: #caa558;  /* GOLD */
   --text: #2b2b2b;
   --muted: #6b6b6b;
 }
@@ -15,7 +15,6 @@ body {
   color: var(--text);
   overflow-x: hidden;
 }
-
 .container {
   max-width: 1100px;
   margin: 0 auto;
@@ -34,7 +33,6 @@ body {
   z-index: 9999;
   background: #d7c8a4;
 }
-
 .intro-bg {
   position: absolute;
   inset: 0;
@@ -43,46 +41,37 @@ body {
   object-fit: cover;
   z-index: 1;
 }
-
 .overlay-intro {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.18);
   z-index: 2;
 }
-
 .intro-content {
   position: relative;
   z-index: 3;
   text-align: center;
 }
-
 .intro-sub {
   color: #222 !important;
   font-weight: 500;
 }
-
 .intro-title {
   font-weight: 600;
   color: #000;
 }
-
 .intro-names {
   font-family: 'Great Vibes', cursive;
   color: #ffeb99 !important;
   font-size: 3rem;
-  margin-top: 6px;
   text-shadow:
     0 2px 4px rgba(0,0,0,0.25),
-    0 0 14px rgba(255,235,153,0.7),
-    0 0 26px rgba(255,235,153,0.5);
+    0 0 14px rgba(255,235,153,0.7);
 }
-
 .intro-date {
   font-weight: 600;
   color: #222 !important;
 }
-
 .btn-open {
   padding: 12px 30px;
   border-radius: 30px;
@@ -105,7 +94,6 @@ body {
   align-items: center;
   overflow: hidden;
 }
-
 .cover {
   position: absolute;
   inset: 0;
@@ -115,90 +103,61 @@ body {
   filter: brightness(0.82);
   z-index: 0;
 }
-
 .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.20);
+  background: rgba(0,0,0,0.18);
   z-index: 1;
 }
 
-/* AREA BLUR DI BELAKANG TEKS */
 .hero-inner {
   position: relative;
   z-index: 3;
+  padding: 20px;
   text-align: center;
-  padding: 28px;
 }
 
-.hero-inner::before {
-  content: "";
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 16%;
-  width: min(92%, 900px);
-  height: 50%;
-  border-radius: 18px;
+/* BLUR KOTAK DIHAPUS — kembali natural */
 
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-}
-
+/* TEKS JELAS & TIMBUL */
 .hero-inner h1,
 .hero-inner .lead,
 .hero-inner .date {
   position: relative;
   z-index: 4;
-  color: rgba(20,20,20,0.95);
+  color: rgba(255,255,255,0.95);
 
   text-shadow:
-    -1px -1px 0 rgba(255,255,255,0.65),
-    2px 2px 10px rgba(0,0,0,0.45);
-
-  -webkit-text-stroke: 0.3px rgba(0,0,0,0.12);
+    -1px -1px 0 rgba(0,0,0,0.25),
+    2px 2px 12px rgba(0,0,0,0.55);
 }
 
 .hero-inner h1 {
   font-family: 'Great Vibes', cursive;
-  font-size: 3.6rem;
+  font-size: 3.8rem;
   color: var(--accent);
   text-shadow:
-    -1px -1px 0 rgba(255,255,255,0.5),
-    0 2px 6px rgba(0,0,0,0.45),
-    0 0 18px rgba(255,235,153,0.55);
+    0 2px 6px rgba(0,0,0,0.6),
+    0 0 18px rgba(255,235,153,0.55),
+    -1px -1px 0 rgba(255,255,255,0.4);
 }
 
 .hero-inner .lead {
   font-weight: 600;
-  font-size: 1.05rem;
-  margin-top: 10px;
+  font-size: 1.08rem;
+  color: #fff;
 }
 
 .hero-inner .date {
   font-weight: 700;
-  margin-top: 10px;
+  color: #fff;
 }
 
-/* RESPONSIVE HERO */
+/* RESPONSIVE */
 @media (max-width: 768px) {
-  .hero-inner::before {
-    top: 14%;
-    height: 58%;
-    width: 94%;
-  }
-  .hero-inner h1 { font-size: 2.7rem; }
+  .hero-inner h1 { font-size: 2.8rem; }
 }
-
 @media (max-width: 480px) {
-  .hero-inner::before {
-    top: 12%;
-    height: 62%;
-    width: 95%;
-  }
   .hero-inner h1 { font-size: 2.3rem; }
 }
 
@@ -208,20 +167,17 @@ body {
   background: #fffdf8;
   padding-top: 60px;
 }
-
 .parents-title {
   font-family: 'Great Vibes', cursive;
   color: var(--accent);
   font-size: 2.4rem;
 }
-
 .parents-wrapper {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 36px;
 }
-
 .parent-box {
   width: 320px;
   background: #ffffffef;
@@ -230,7 +186,6 @@ body {
   padding: 22px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.05);
 }
-
 .parent-name {
   color: var(--accent);
   font-size: 1.3rem;
@@ -238,14 +193,12 @@ body {
 }
 
 /* ============================= SECTION ANIMATION ============================= */
-
 .section {
   padding: 70px 0;
   opacity: 0;
   transform: translateY(20px);
   transition: .5s ease-out;
 }
-
 .section.visible {
   opacity: 1;
   transform: none;
@@ -259,7 +212,6 @@ body {
   gap: 14px;
   padding: 10px;
 }
-
 .gallery-grid-fixed img {
   width: 100%;
   aspect-ratio: 3/4;
@@ -277,13 +229,11 @@ body {
   gap: 26px;
   flex-wrap: wrap;
 }
-
 .insta-card-link {
   display: inline-block;
   text-decoration: none;
   color: inherit;
 }
-
 .insta-card {
   width: 260px;
   text-align: center;
@@ -291,35 +241,29 @@ body {
   transform: translateY(16px) scale(.985);
   transition: .5s ease;
 }
-
 .insta-card.visible {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
-
 .insta-frame {
   width: 100%;
   aspect-ratio: 3/4;
   border-radius: 16px;
   overflow: hidden;
   border: 6px solid rgba(202,165,88,0.3);
-
   background: linear-gradient(180deg, #cfe9ff, #a6d8ff);
 }
-
 .insta-frame img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .insta-username {
   margin-top: 10px;
   color: var(--accent);
   font-weight: 700;
   text-decoration: underline;
 }
-
 @media (max-width:480px) {
   .insta-card { width: 92%; }
 }
@@ -333,7 +277,6 @@ body {
   border: 1px solid rgba(202,165,88,0.18);
   text-align: center;
 }
-
 .map-small-btn {
   display: inline-block;
   padding: 8px 18px;
@@ -346,17 +289,13 @@ body {
   color: #2b2b2b;
   transition: .25s ease;
 }
-
 .map-small-btn:hover {
   transform: translateY(-3px);
   background: #ffdce6;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
 }
-
 .map-small-btn.clicked {
   animation: bounceMap .35s ease-out;
 }
-
 @keyframes bounceMap {
   0% { transform: scale(0.92); }
   50% { transform: scale(1.06); }
@@ -378,7 +317,6 @@ body {
   z-index: 2000;
   box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
 }
-
 .bottom-nav .nav-item {
   flex: 1;
   font-size: 22px;
@@ -387,12 +325,10 @@ body {
   color: var(--text);
   transition: .25s ease;
 }
-
 .bottom-nav .nav-item span {
   display: block;
   font-size: 11px;
 }
-
 .bottom-nav .nav-item.active,
 .bottom-nav .nav-item:hover {
   color: var(--accent);
@@ -415,7 +351,6 @@ body {
   box-shadow: 0 8px 22px rgba(0,0,0,0.2);
   z-index: 2000;
 }
-
 .music-btn.off {
   background: #777;
 }
@@ -428,7 +363,6 @@ body {
   pointer-events: none;
   z-index: 5;
 }
-
 .petal {
   position: absolute;
   width: 12px;
@@ -440,15 +374,15 @@ body {
 
 /* ============================= RSVP ============================= */
 
-.rsvp-form .form-label { font-weight: 600; }
-
+.rsvp-form .form-label {
+  font-weight: 600;
+}
 .rsvp-form .form-control,
 .rsvp-form .form-select,
 .rsvp-form textarea {
   border-radius: 10px;
   border: 1px solid rgba(0,0,0,0.08);
 }
-
 #rsvp-submit {
   background: var(--accent);
   color: #fff;
@@ -458,7 +392,6 @@ body {
   font-weight: 700;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
-
 .rsvp-thanks {
   position: fixed;
   inset: 0;
@@ -468,11 +401,9 @@ body {
   background: rgba(0,0,0,0.45);
   z-index: 3000;
 }
-
 .rsvp-thanks[aria-hidden="false"] {
   display: flex;
 }
-
 .rsvp-thanks-inner {
   background: #fff;
   border-radius: 12px;
@@ -482,18 +413,14 @@ body {
   text-align: center;
   box-shadow: 0 20px 45px rgba(0,0,0,0.25);
 }
-
 .rsvp-thanks-inner h3 {
   margin: 0;
   color: var(--accent);
 }
 
 /* ============================= TRANSFER ============================= */
-
 #transfer .card {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-/* ================================================================ */
