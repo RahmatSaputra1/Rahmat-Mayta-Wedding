@@ -256,7 +256,7 @@ function copyText(text){
 
 
 /* ===========================================================
-   INSTAGRAM CARD LINK ACCESSIBILITY FIX
+   INSTAGRAM LINK ACCESSIBILITY
    =========================================================== */
 document.querySelectorAll(".insta-card-link").forEach(a=>{
   a.addEventListener("keydown", e=>{
