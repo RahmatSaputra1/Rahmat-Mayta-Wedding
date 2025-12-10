@@ -5,7 +5,6 @@
   --text: #2b2b2b;
   --muted: #6b6b6b;
 }
-
 /* RESET */
 * { box-sizing: border-box; }
 html, body { height: 100%; margin: 0; padding: 0; }
@@ -15,443 +14,83 @@ body {
   color: var(--text);
   overflow-x: hidden;
 }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 18px;
-}
+/* INTRO SCREEN DENGAN BG-PAPER */
+.intro-screen { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; z-index: 9999; background: #d7c8a4; }
+.intro-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+.overlay-intro { position: absolute; inset: 0; background: rgba(0,0,0,0.18); z-index: 2; }
+.intro-content { position: relative; z-index: 3; text-align: center; }
+.intro-sub { color: #2b2b2b !important; font-weight: 500; margin-bottom: 6px; }
+.intro-title { color: #000 !important; font-weight: 600; }
+.intro-names { font-family: 'Great Vibes', cursive; color: #ffeb99 !important; font-size: 3rem; margin-top: 6px; text-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 0 14px rgba(255,235,153,0.7), 0 0 26px rgba(255,235,153,0.5); }
+.intro-date { color: #2b2b2b !important; font-weight: 600; margin-top: 6px; }
+.btn-open { padding: 12px 30px; border-radius: 30px; margin-top: 14px; background: var(--accent); border: none; font-weight: 700; color: #fff; box-shadow: 0 8px 22px rgba(0,0,0,0.25); }
 
-/* =======================================================
-   INTRO SCREEN DENGAN BG-PAPER
-   ======================================================= */
-.intro-screen {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  z-index: 9999;
-  background: #d7c8a4; /* fallback */
-}
+/* HERO */
+.hero { position: relative; height: 85vh; min-height: 540px; display: flex; justify-content: center; align-items: center; }
+.cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.80); }
+.overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.25); }
+.hero-inner { position: relative; z-index: 3; padding: 20px; text-align: center; }
+.hero-inner h1 { font-family: 'Great Vibes', cursive; font-size: 4.2rem; color: var(--accent); text-shadow: 0 3px 8px rgba(0,0,0,0.55); margin: 0; }
 
-.intro-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
+/* parents */
+#parents { background: #fffdf8; padding-top: 60px; }
+.parents-title { font-family: 'Great Vibes', cursive; color: var(--accent); font-size: 2.4rem; margin-bottom: 25px; }
+.parents-wrapper { display: flex; justify-content: center; flex-wrap: wrap; gap: 36px; }
+.parent-box { width: 320px; background: #ffffffef; border-radius: 14px; border: 2px solid rgba(202,165,88,0.25); padding: 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+.parent-name { color: var(--accent); font-size: 1.3rem; font-weight: 700; }
 
-.overlay-intro {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.18);
-  z-index: 2;
-}
+/* sections */
+.section { padding: 70px 0; opacity: 0; transform: translateY(20px); transition: .4s ease-out; }
+.section.visible { opacity: 1; transform: none; }
 
-.intro-content {
-  position: relative;
-  z-index: 3;
-  text-align: center;
-}
+/* gallery */
+.gallery-grid-fixed { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; padding: 10px; }
+.gallery-grid-fixed img { width: 100%; aspect-ratio: 3/4; border-radius: 14px; object-fit: cover; box-shadow: 0 6px 18px rgba(0,0,0,0.12); transition: .2s ease; }
 
-.intro-sub {
-  color: #2b2b2b !important;
-  font-weight: 500;
-  margin-bottom: 6px;
-}
+/* instagram */
+.insta-row { display:flex; justify-content:center; gap:26px; flex-wrap:wrap; }
+.insta-card { width:260px; perspective:800px; opacity:0; transform:translateY(16px) scale(.985); transition:.5s ease; }
+.insta-card.visible { opacity:1; transform:translateY(0) scale(1); }
+.insta-frame { width:100%; aspect-ratio:3/4; border-radius:16px; overflow:hidden; border:6px solid rgba(202,165,88,0.3); transition:.35s ease; }
 
-.intro-title {
-  color: #000 !important;
-  font-weight: 600;
-}
+/* map button */
+.map-box { background:#fff3f7; padding:22px; border-radius:14px; border:1px solid rgba(202,165,88,0.18); text-align:center; }
+.map-small-btn { display:inline-block; padding:8px 18px; background:#ffe6ef; border-radius:14px; border:1px solid rgba(202,165,88,0.35); color:#2b2b2b; font-weight:600; text-decoration:none; transition:.25s ease; box-shadow:0 4px 12px rgba(0,0,0,0.08); }
+.map-small-btn:hover { transform:translateY(-3px); background:#ffdce6; box-shadow:0 8px 20px rgba(0,0,0,0.1); }
+.map-small-btn.clicked { animation:bounceMap .35s ease-out; }
+@keyframes bounceMap { 0%{transform:scale(0.92)}50%{transform:scale(1.06)}100%{transform:scale(1)} }
 
-.intro-names {
-  font-family: 'Great Vibes', cursive;
-  color: #ffeb99 !important; /* GOLD TERANG */
-  font-size: 3rem;
-  margin-top: 6px;
-  text-shadow:
-    0 2px 4px rgba(0,0,0,0.25),
-    0 0 14px rgba(255,235,153,0.7),
-    0 0 26px rgba(255,235,153,0.5);
-}
+/* navbar */
+.bottom-nav { position:fixed; bottom:0; width:100%; height:65px; background:#ffffffee; backdrop-filter:blur(10px); display:flex; justify-content:space-around; align-items:center; z-index:2000; box-shadow:0 -4px 15px rgba(0,0,0,0.1); }
+.bottom-nav .nav-item { flex:1; font-size:22px; text-align:center; text-decoration:none; color:var(--text); transition:.25s ease; }
+.bottom-nav .nav-item span{ display:block; font-size:11px; }
+.bottom-nav .nav-item.active, .bottom-nav .nav-item:hover { color:var(--accent); transform:translateY(-3px); }
 
-.intro-date {
-  color: #2b2b2b !important;
-  font-weight: 600;
-  margin-top: 6px;
-}
+/* music btn */
+.music-btn { position:fixed; left:18px; bottom:90px; width:58px; height:58px; background:var(--accent); color:white; font-size:22px; border-radius:50%; border:none; box-shadow:0 8px 22px rgba(0,0,0,0.2); z-index:2000; }
+.music-btn.off{ background:#777; }
 
-.btn-open {
-  padding: 12px 30px;
-  border-radius: 30px;
-  margin-top: 14px;
-  background: var(--accent);
-  border: none;
-  font-weight: 700;
-  color: #fff;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
-}
+/* petals */
+#petals{ position:fixed; inset:0; pointer-events:none; z-index:5; }
+.petal{ position:absolute; width:12px; height:12px; background:radial-gradient(circle at 30% 30%, #ffeaf0, #ffcddf); border-radius:50% 30% 50% 30%; opacity:.9; }
 
-/* =======================================================
-   HERO SECTION
-   ======================================================= */
-.hero {
-  position: relative;
-  height: 85vh;
-  min-height: 540px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* rsvp */
+.rsvp-form .form-label{ font-weight:600; color:var(--text); }
+.rsvp-form .form-control, .rsvp-form .form-select, .rsvp-form textarea{ border-radius:10px; box-shadow:none; border:1px solid rgba(0,0,0,0.08); }
+#rsvp-submit{ background:var(--accent); color:#fff; padding:12px 28px; border-radius:28px; font-weight:700; box-shadow:0 8px 18px rgba(0,0,0,0.15); border:none; }
+.rsvp-thanks{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.45); z-index:3000; }
+.rsvp-thanks[aria-hidden="false"]{ display:flex; }
+.rsvp-thanks-inner{ background:#fff; padding:24px; border-radius:12px; max-width:420px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,0.25); }
+.rsvp-thanks-inner h3{ margin-top:0; color:var(--accent); }
+.rsvp-thanks-inner p{ color:var(--text); margin-bottom:18px; }
 
-.cover {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.80);
-}
+/* transfer (amplop) */
+#transfer .card { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+#transfer .card strong{ display:block; font-size:1.05rem; }
+#transfer .card button{ margin-left:12px; }
 
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.25);
-}
-
-.hero-inner {
-  position: relative;
-  z-index: 3;
-  padding: 20px;
-  text-align: center;
-}
-
-.hero-inner h1 {
-  font-family: 'Great Vibes', cursive;
-  font-size: 4.2rem;
-  color: var(--accent);
-  text-shadow: 0 3px 8px rgba(0,0,0,0.55);
-  margin: 0;
-}
-
-.hero-inner .lead {
-  margin-top: 10px;
-  color: #fff;
-  font-weight: 600;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.55);
-}
-
-.hero-inner .date {
-  color: #fff;
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-/* =======================================================
-   ORANG TUA
-   ======================================================= */
-#parents {
-  background: #fffdf8;
-  padding-top: 60px;
-}
-
-.parents-title {
-  font-family: 'Great Vibes', cursive;
-  color: var(--accent);
-  font-size: 2.4rem;
-  margin-bottom: 25px;
-}
-
-.parents-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 36px;
-}
-
-.parent-box {
-  width: 320px;
-  background: #ffffffef;
-  border-radius: 14px;
-  border: 2px solid rgba(202,165,88,0.25);
-  padding: 22px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
-}
-
-.parent-name {
-  color: var(--accent);
-  font-size: 1.3rem;
-  font-weight: 700;
-}
-
-.parent-desc {
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.55;
-}
-
-/* =======================================================
-   ANIMASI SECTION
-   ======================================================= */
-.section {
-  padding: 70px 0;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: .4s ease-out;
-}
-
-.section.visible {
-  opacity: 1;
-  transform: none;
-}
-
-/* =======================================================
-   GALERI 8 FOTO
-   ======================================================= */
-#gallery {
-  background: #fffefb;
-}
-
-.gallery-title {
-  font-family: 'Great Vibes', cursive;
-  color: var(--accent);
-  font-size: 2.4rem;
-}
-
-.gallery-grid-fixed {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 14px;
-  padding: 10px;
-}
-
-.gallery-grid-fixed .anim-item {
-  opacity: 0;
-  transform: translateY(18px) scale(.95);
-  transition: .45s ease;
-}
-
-.gallery-grid-fixed .anim-item.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.gallery-grid-fixed img {
-  width: 100%;
-  aspect-ratio: 3/4;
-  border-radius: 14px;
-  object-fit: cover;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  transition: .2s ease;
-}
-
-.gallery-grid-fixed img:hover {
-  transform: scale(1.03);
-}
-
-/* =======================================================
-   INSTAGRAM
-   ======================================================= */
-.insta-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 26px;
-}
-
-.insta-card {
-  width: 260px;
-  text-align: center;
-  opacity: 0;
-  transform: translateY(16px) scale(.985);
-  transition: .5s ease;
-  perspective: 800px;
-}
-
-.insta-card.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.insta-frame {
-  width: 100%;
-  aspect-ratio: 3/4;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 6px solid rgba(202,165,88,0.3);
-  transition: .35s ease;
-}
-
-.insta-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* hover tilt */
-@media (hover:hover) and (pointer:fine) {
-  .insta-card:hover .insta-frame {
-    transform: translateY(-6px) rotateX(4deg) rotateY(2deg) scale(1.03);
-    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
-  }
-}
-
-/* shimmer username */
-.insta-username a {
-  color: var(--accent);
-  font-weight: 700;
-  text-decoration: none;
-  position: relative;
-}
-
-.insta-username a::after {
-  content: "";
-  position: absolute;
-  left: -60%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
-  transform: skewX(-20deg);
-  transition: .8s;
-}
-
-.insta-card:hover .insta-username a::after {
-  left: 120%;
-}
-
-/* =======================================================
-   GOOGLE MAPS BUTTON (Kecil)
-   ======================================================= */
-.map-box {
-  background: #fff3f7;
-  padding: 22px;
-  border-radius: 14px;
-  border: 1px solid rgba(202,165,88,0.18);
-  text-align: center;
-}
-
-.map-small-btn {
-  display: inline-block;
-  padding: 8px 18px;
-  background: #ffe6ef;
-  border-radius: 14px;
-  border: 1px solid rgba(202,165,88,0.35);
-  color: #2b2b2b;
-  font-weight: 600;
-  text-decoration: none;
-  transition: .25s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-.map-small-btn:hover {
-  transform: translateY(-3px);
-  background: #ffdce6;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-}
-
-/* klik animasi */
-.map-small-btn.clicked {
-  animation: bounceMap .35s ease-out;
-}
-
-@keyframes bounceMap {
-  0% { transform: scale(0.92); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
-}
-
-/* =======================================================
-   NAVBAR BAWAH (Versi Besar Asli)
-   ======================================================= */
-.bottom-nav {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 65px;
-  background: #ffffffee;
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 2000;
-  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
-}
-
-.bottom-nav .nav-item {
-  flex: 1;
-  font-size: 22px;
-  text-align: center;
-  text-decoration: none;
-  color: var(--text);
-  transition: .25s ease;
-}
-
-.bottom-nav .nav-item span {
-  display: block;
-  font-size: 11px;
-}
-
-.bottom-nav .nav-item.active,
-.bottom-nav .nav-item:hover {
-  color: var(--accent);
-  transform: translateY(-3px);
-}
-
-/* =======================================================
-   MUSIC BUTTON
-   ======================================================= */
-.music-btn {
-  position: fixed;
-  left: 18px;
-  bottom: 90px;
-  width: 58px;
-  height: 58px;
-  background: var(--accent);
-  color: white;
-  font-size: 22px;
-  border-radius: 50%;
-  border: none;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.2);
-  z-index: 2000;
-}
-
-.music-btn.off {
-  background: #777;
-}
-
-/* =======================================================
-   PETALS
-   ======================================================= */
-#petals {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 5;
-}
-
-.petal {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background: radial-gradient(circle at 30% 30%, #ffeaf0, #ffcddf);
-  border-radius: 50% 30% 50% 30%;
-  opacity: .9;
-}
-
-/* =======================================================
-   RESPONSIVE
-   ======================================================= */
-@media (max-width: 768px) {
-  .hero-inner h1 { font-size: 3rem; }
-  .intro-names { font-size: 2.4rem; }
-}
-
-@media (max-width: 480px) {
-  .hero-inner h1 { font-size: 2.5rem; }
-  .insta-card { width: 100%; }
-}
+/* responsive */
+@media (max-width:768px){ .hero-inner h1{ font-size:3rem; } .intro-names{ font-size:2.4rem; } }
+@media (max-width:480px){ .hero-inner h1{ font-size:2.5rem; } .insta-card{ width:100%; } }
